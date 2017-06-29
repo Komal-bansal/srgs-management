@@ -1,0 +1,15 @@
+<div class="appreciation">
+<h1>Appreciation
+  <button type="button" class="btn btn-success btn-circle" [routerLink]="['/add-appreciation']">
+  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+</button>
+</h1>
+<ul class="nav nav-tabs">
+  <li routerLinkActive="active"><a [routerLink]="['./for-me']">For Me</a></li>
+  <li routerLinkActive="active"><a [routerLink]="['./for-student']">For Student</a></li>
+</ul>
+
+  <div class="tab-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>
