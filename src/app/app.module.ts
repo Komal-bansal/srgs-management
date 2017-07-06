@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { rootRouterConfig } from './app.routes';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import {CalendarComponent} from "./angular2-fullcalendar/src/calendar/calendar";
 
 import { AppComponent }  from './app.component';
 import { MainComponent } from './component/main/main.component';
@@ -25,6 +26,14 @@ import {ForMeComponent} from './component/appreciation/for-me/forme';
 import {ByMeComponent} from './component/appreciation/by-me/byme';
 import {AddEmployeeComponent} from './component/addEmployee/addEmployee.component';
 import {AddAppreciation} from './component/appreciation/add/add';
+import { PollComponent } from './component/poll/poll.component';
+import { AddPollComponent } from './component/poll/add/add';
+import { CurrentPollComponent } from './component/poll/current/poll';
+import { ClosedPollComponent } from './component/poll/closed/poll';
+import {MessageComponent} from './component/message/message.component';
+import {NewMessageComponent} from './component/message/new/new';
+import {ViewMessageComponent} from './component/message/view/view';
+import {EventComponent} from './component/event/event.component';
 
 /*Providers */
 import { LoggedInGuard } from './component/login/login.gaurd';
@@ -40,7 +49,8 @@ import {XHRBackend, RequestOptions} from '@angular/http';
 import {AdminService} from './providers/admin.service';
 import {ValidationService} from './providers/formValidation.service';
 import { AppreciationService} from './providers/appreciation.service';
-
+import { PollService } from './providers/poll.service';
+import {EventService} from './providers/event.service';
 
 @NgModule({
   imports: [
@@ -72,7 +82,15 @@ import { AppreciationService} from './providers/appreciation.service';
     ByMeComponent,
     AddEmployeeComponent,
     AddAppreciation,
-
+    PollComponent,
+    AddPollComponent,
+    CurrentPollComponent,
+    ClosedPollComponent,
+    MessageComponent,
+    NewMessageComponent, 
+    ViewMessageComponent,
+    CalendarComponent,
+    EventComponent,
   ],
   providers: [
     LoggedInGuard,
@@ -87,6 +105,8 @@ import { AppreciationService} from './providers/appreciation.service';
     ValidationService,
     AdminService,
     AppreciationService,
+    PollService,
+    EventService,
   {
       provide: CustomHttpService,
       useFactory: (backend: XHRBackend, defaultOptions: RequestOptions) => {
