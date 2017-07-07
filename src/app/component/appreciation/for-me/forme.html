@@ -1,6 +1,10 @@
 <div class="tab-pane">
   <div class="panel panel-default">
-
+      <div class="add-button">
+        <button type="button" class="btn btn-success btn-circle pull-right" [routerLink]="['/add-appreciation']">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>
+      </div>
     <div class="panel-body" id="accordion">
       <div style="text-align: center" *ngIf="EmptyComplaints" ><b>No Appreciation</b></div>
       <div class="card" *ngFor="let c of complaints; let i = index;">

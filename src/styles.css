@@ -1,7 +1,3 @@
-/*loader*/
-
-/*===============*/
-
 body{
     background: #ddd;
 }
@@ -276,4 +272,8 @@ hr.style-line {
     text-align:center;
     font-weight:bold !important;
     color:white;
+}
+.add-button{
+    /*float: right;*/
+    width: 100%;
 }

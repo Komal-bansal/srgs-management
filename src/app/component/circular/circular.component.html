@@ -1,21 +1,26 @@
-<h1>Circulars
+<!--<h1>Circulars
   <button type="button" class="btn btn-success btn-circle" [routerLink]="['/add-circular']">
   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 </button>
-</h1>
+</h1>-->
 <div class="panel panel-default">
   <!-- Default panel contents -->
   <div class="panel-heading">Circulars</div>
 
   <!-- Table -->
   <div class="panel-body">
+    <div class="add-button">
+      <button type="button" class="btn btn-success btn-circle pull-right" [routerLink]="['/add-circular']">
+  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+</button>
+    </div>
     <div style="text-align: center" *ngIf="EmptyCirculars"><b>No Circular added to View</b></div>
 
     <div class="row text-center">
       <loader [condition]="loader"></loader>
     </div>
 
-      <div class="container card" *ngFor="let circular of circulars">
+    <div class="container card" *ngFor="let circular of circulars">
       <div class="row">
         <span class="glyphicon glyphicon-resize-full expand" (click)="seletToExpand(circular)" data-toggle="modal" data-target="#myModal-card"></span>
       </div>
@@ -30,9 +35,10 @@
       </div>
       <div class="row name">{{circular.employeeName}}</div>
       <div class="row class"><label class="heading">For</label>
-      <div  class="class">{{circular.standards}}</div>
-      <span *ngIf="!circular.standards">School</span>
-      </div><hr class="style-line">
+        <div class="class">{{circular.standards}}</div>
+        <span *ngIf="!circular.standards">School</span>
+      </div>
+      <hr class="style-line">
       <div class="row title">{{circular.title}}</div>
       <!--<div class="row">
         <div class="col-sm-6 edit" *ngIf="!(complaintStatus == 4 || complaintStatus == 5)">
@@ -65,29 +71,37 @@
   </div>
 </div>
 
-<div class="modal fade" id="myModal-card"tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+<div class="modal fade" id="myModal-card" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content" *ngIf="selectedCircular">
-      <div class="modal-header" >
+      <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="gridSystemModalLabel">{{selectedCircular.title}}</h4>
       </div>
-      <div class="modal-body card-modal" >
+      <div class="modal-body card-modal">
         <div class="row modal-heading">
-          <img  class="modal-image" [attr.src]="fileUrl + selectedCircular.employeePicUrl" style="margin-top:10px;">           
+          <img class="modal-image" [attr.src]="fileUrl + selectedCircular.employeePicUrl" style="margin-top:10px;">
         </div>
         <div class="row modal-name">{{selectedCircular.employeeName}}
           <div class="modal-class" *ngIf="selectedCircular.standards"><label>For : </label><span>{{selectedCircular.standards}}</span><span *ngIf="!selectedCircular.standards"></span></div>
         </div>
-        <div class="row modal-description">{{selectedCircular.description}}</div><hr class="style-line">
+        <div class="row modal-description">{{selectedCircular.description}}</div>
+        <hr class="style-line">
         <div class="row">
-          <div class="col-sm-6" ><label class="heading">Created At</label><div class="result">{{selectedCircular.createdAt | date: "shortDate"}}</div></div>
-          <div class="col-sm-6" ><label class="heading">Start date</label><div class="result">{{selectedCircular.start | date: "shortDate"}}</div></div>
+          <div class="col-sm-6"><label class="heading">Created At</label>
+            <div class="result">{{selectedCircular.createdAt | date: "shortDate"}}</div>
+          </div>
+          <div class="col-sm-6"><label class="heading">Start date</label>
+            <div class="result">{{selectedCircular.start | date: "shortDate"}}</div>
+          </div>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

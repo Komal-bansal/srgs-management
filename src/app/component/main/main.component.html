@@ -1,52 +1,53 @@
 <div id="wrapper">
-  <!--<nav class="navbar navbar-default navbar-fixed-top header" >
-      <div class="">
-        <div class="navbar-header" id="toggle-header">
-          
-          <a class="navbar-brand" id="menu-toggle" style="cursor: pointer;float:right;padding-right: 0px;color:white"><i class="glyphicon glyphicon-menu-hamburger"></i></a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-top-links navbar-right">
-             <li class="logo-list"><img src="././icons/logo.png" class="logo"></li>
-          </ul>
-        </div>
-      </div>
-    </nav>-->
+  <!--header start-->
   <div class="header-custom navbar-fixed-top">
-    <!--<span class="glyphicon glyphicon-menu-hamburger" id="menu-toggle" ><span>-->
-    <a class="nav-btn" id="menu-toggle" style="position:absolute;top:0px;left:-2px;z-index:1000"><i class="glyphicon glyphicon-menu-hamburger" style="font-size:20px;color:white"></i></a>
-    <!--<img class="header-srgs" src="./icons/header-srgs.png" style=" position:absolute;height:200px">-->
-    <a>
-      <picture>
-        <source media="(min-width: 650px)" srcset="./icons/header-srgs.png">
-        <source media="(min-width: 450px)" srcset="./icons/header-srgs-2.png">
-        <!--<img src="img_orange_flowers.jpg" alt="Flowers" style="width:auto;">-->
-        <img class="header-srgs" src="./icons/header-srgs.png" style="height:180px">
-        <!--<a class="nav-btn"><img class="profile-img" src="{{log.getData('picUrl')}}" *ngIf="log.getData('picUrl')"></a>-->
-      </picture>
-        <a class="profile-img-container" routerLink="/account"><img class="profile-img" src="{{log.getData('picUrl')}}" *ngIf="log.getData('picUrl')"><div class="profile-name">{{log.getData('name')}}</div></a>
-      
-    </a>
+    <a class="nav-btn" id="menu-toggle"><i class="glyphicon glyphicon-menu-hamburger"></i></a>
+    <picture>
+      <source media="(min-width: 750px)" srcset="./icons/header-srgs.png">
+      <source media="(min-width: 250px)" srcset="./icons/header-srgs-2.png">
+      <img class="header-srgs" src="./icons/header-srgs.png">
+    </picture>
+    <a class="profile-img-container" (click)="displayProfile=!displayProfile"><img class="profile-img" src="{{log.getData('picUrl')}}" *ngIf="log.getData('picUrl')"></a>
   </div>
-  <!-- Sidebar -->
-  <div id="sidebar-wrapper">
-    <ul class="sidebar-nav">
-      <!--<li class="sidebar-header">
-         <a routerLink="/account">
-          <div class="profile-display">
-            <div class="accBgImage">
-              <div class="padding">
-              <img class="profile-img" src="{{log.getData('picUrl')}}" *ngIf="log.getData('picUrl')">
-              </div>
-              <div class="profile-name">
-                {{log.getData('name')}}
+<!-- header end-->
+  <div class="profile-card" [hidden]="displayProfile">
+    <div class="row">
+      <div class="col-sm-4 col-xs-4">
+        <img class="profile-card-pic" src="{{log.getData('picUrl')}}" *ngIf="log.getData('picUrl')">
+      </div>
+      <div class="col-sm-8 col-xs-8">
+        <div class="coloumn-middle">
+          <div class="align-middle">
+            <div class="row">
+              <div class="profile-card-name">{{log.getData('name')}}</div>
+            </div>
+            <div class="row">
+              <div class="profile-card-role">{{log.getData('role')}}</div>
+            </div>
+            <div class="row">
+              <div class="profile-card-email">
+                {{log.getData('email')}}
               </div>
             </div>
           </div>
-         </a>
-        </li>-->
+        </div>
+      </div>
+    </div>
+    <div class="row profile-card-footer">
+      <div class="col-sm-6 col-xs-6" routerLinkActive="active">
+        <a [routerLink]="['/account']" class="btn btn-default" style="color: #333">Account</a>
+      </div>
+      <div class="col-sm-6 col-xs-6" data-toggle="modal" data-target=".bs-example-modal-sm">
+        <a class="btn btn-default custom-buttons" routerLinkActive="active" style="color: #333">Logout</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
       <li *ngFor="let page of pages;" class="sidebar-items">
-        <a [routerLink]="['/'+page.url]" routerLinkActive="active">
+        <a [routerLink]="['/'+page.url]" routerLinkActive="active" class="sidebar-link">
           <img class="sidebar-icon" src="{{page.icon}}"> {{page.title}}
         </a>
       </li>

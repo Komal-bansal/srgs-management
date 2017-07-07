@@ -8,6 +8,8 @@ import {AppreciationComponent} from '../appreciation/appreciation.component';
 import {PollComponent} from '../poll/poll.component';
 import {MessageComponent} from '../message/message.component';
 import {EventComponent} from '../event/event.component';
+import {AccountComponent} from '../account/account.component';
+
 
 declare let $:any;
 
@@ -17,7 +19,7 @@ declare let $:any;
   styleUrls:['./main.component.css']
 })
 export class MainComponent implements OnInit, AfterViewInit{
-
+  public displayProfile:boolean=true;
   public user:any;
   public isLoggedIn:boolean = false;
   public pages = [
@@ -26,6 +28,7 @@ export class MainComponent implements OnInit, AfterViewInit{
       { title: 'Circular', component: CircularComponent , icon: 'icons/circular.png', url: '/circular'},
       { title: 'Homework', component: HomeworkComponent, icon: 'icons/homework.png', url: '/homework/current-homework' },
       { title: 'Appreciation', component: AppreciationComponent, icon: 'icons/appreciation.png', url: '/appreciation/for-me' },
+      { title: 'Profile', component: AccountComponent, icon: 'icons/profile.png', url: '/account'},      
       // { title: 'Poll', component: PollComponent, icon: 'icons/poll.png', url: '/poll/current-poll'},
       // { title: 'Message', component: MessageComponent, icon: 'icons/message.png', url: '/messaging'},
       // { title: 'Events', component: EventComponent, icon: 'icons/event.png', url: '/event'}

@@ -1,9 +1,10 @@
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading">Create New Homework</div>
- <button type="button" class="close pull-right" aria-label="Close" (click)="_location.back();">
+  <div class="panel-heading">Create New Homework
+    <button type="button" class="close pull-right" aria-label="Close" (click)="_location.back();">
     <span aria-hidden="true">&times; </span>
   </button> 
+  </div>
    <div class="panel-body">
   <form name="homework" [formGroup]="homework" (ngSubmit)="submitHomework()" novalidate>
     <div class="row text-center">

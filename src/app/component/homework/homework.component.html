@@ -1,9 +1,5 @@
 <div class="homework">
-  <h1>Homework
-  <button type="button" class="btn btn-success btn-circle" [routerLink]="['/homework-add']">
-    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-  </button>
- </h1>
+
   <ul class="nav nav-tabs">
     <li routerLinkActive="active"><a [routerLink]="['/homework/current-homework']" >CURRENT</a></li>
     <li routerLinkActive="active"><a [routerLink]="['/homework/passed-homework']" >PAST</a></li>
@@ -11,4 +7,10 @@
   <div class="tab-content">
     <router-outlet></router-outlet>
   </div>
+
+    <h1>Homework
+  <button type="button" class="btn btn-success btn-circle" [routerLink]="['/homework-add']">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+  </button>
+ </h1>
 </div>

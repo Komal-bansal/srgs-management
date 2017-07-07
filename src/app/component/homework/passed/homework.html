@@ -2,6 +2,11 @@
   <div class="panel panel-default">
     <!--<div class="panel-heading">Current Homework</div>-->
     <div class="panel-body" id="accordion">
+      <div class="add-button">
+        <button type="button" class="btn btn-success btn-circle pull-right" [routerLink]="['/homework-add']">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>
+      </div>
       <div style="text-align: center" *ngIf="EmptyHomeworks" ><b>No Homework</b></div>
       <div class="container card" *ngFor="let a of homeworks; let i = index;">
       <div class="row">
