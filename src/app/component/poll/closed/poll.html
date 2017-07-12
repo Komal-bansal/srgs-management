@@ -1,16 +1,23 @@
-<br/>
-
+<div class="panel panel-default">
+  <div class="panel-body">
+<div class="add-button">
+  <button type="button" class="btn btn-success btn-circle" [routerLink]="['/add-poll']">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+  </button>
+</div>
 <br>
+
 <div class="row text-center">
-        <loader [condition]="loader"></loader>
-      </div>
-<div class="panel panel-default" *ngIf="emptyPolls">
+  <loader [condition]="loader"></loader>
+</div>
+
+<div class="panel-body" *ngIf="emptyPolls">
   No Polls added to the view.
 </div>
-<div *ngIf="!emptyPolls">
 
+<div *ngIf="!emptyPolls" class="panel-body">
   <div class="panel panel-default" *ngFor="let p of polls">
-    <div class="panel-heading">
+    <div class="panel-heading custom-panel-heading">
       {{p.question}}
     </div>
     <div class="panel-body" style="padding: auto 0;">
@@ -29,7 +36,7 @@
         </div>
         <div class="col-lg-6">
           <ul class="" style="list-style-type:none;margin:0;padding:0;">
-            <li *ngIf="p.EmployeeName">Created By: {{p.EmployeeName}} </li>
+            <li *ngIf="p.employeeName">Created By: {{p.employeeName}} </li>
             <li *ngIf="p.typeId==1">Audience: {{p.typeName}} </li>
             <li *ngIf="p.typeId==2">Audience:
               <ul *ngFor="let s of p.standards">
@@ -38,8 +45,8 @@
             </li>
             <li>Question Type: {{p.optionTypeName}} </li>
             <li>Count: {{p.count}}</li>
-            <li>Created At: {{p.createdAt | date: 'shortDate'}}</li>
-            <li>Expired At: {{changeDate(p)}}</li>
+            <li>Created At: {{p.createdAt | date: "dd/MM/yy"}}</li>
+            <li>Expired At: {{p.expiredAt | date: "dd/MM/yy"}}</li>
           </ul>
         </div>
 
@@ -141,3 +148,5 @@ typeName-->
     </div>
   </div>
 </div>-->
+</div>
+</div>

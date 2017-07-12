@@ -15,21 +15,20 @@ export class ClosedPollComponent {
 
 public noMore: boolean = false;
 public emptyPolls:boolean = false;
-public polls: any;
+public polls: any[];
 public currentPage=1;
 public loader:boolean = false;
 
   constructor(public ps: PollService){
     this.getClosedPolls();
-
   }
 
   public getClosedPolls(){
-    this.loader=true;
+    this.loader = true;
     this.ps.getClosedPolls(this.currentPage).subscribe(res=>{
       if(res.status==204){
         this.polls = [];
-        this.emptyPolls=true;
+        this.emptyPolls = true;
         this.loader = false;
         return;
       }
@@ -40,19 +39,18 @@ public loader:boolean = false;
     },
     err =>{
       console.log("error",err);
-       this.loader=false;
-
+       this.loader = false;
     })
   }
 
-  public changeDate(obj: any) {
-    var day, mon, yr, date;
-    day = (obj.expiredAt).slice(8, 10);
-    mon = (obj.expiredAt + 1).slice(5, 7);
-    yr = (obj.expiredAt + 1).slice(0, 4);
-    date = day + '/' + mon + '/' + yr;
-    return date;
-  }
+  // public changeDate(obj: any) {
+  //   var day, mon, yr, date;
+  //   day = (obj.expiredAt).slice(8, 10);
+  //   mon = (obj.expiredAt + 1).slice(5, 7);
+  //   yr = (obj.expiredAt + 1).slice(0, 4);
+  //   date = day + '/' + mon + '/' + yr;
+  //   return date;
+  // }
 
     public previousPoll() {
     delete this.polls;

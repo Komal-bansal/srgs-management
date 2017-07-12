@@ -18,14 +18,20 @@ import {ByMeComponent} from './component/appreciation/by-me/byme';
 import {AddEmployeeComponent} from './component/addEmployee/addEmployee.component';
 import {AddAppreciation} from './component/appreciation/add/add';
 import { LoggedInGuard } from './component/login/login.gaurd';
+// import {MessageComponent} from './component/message/message.component';
+// import {NewMessageComponent} from './component/message/new/new';
+// import {ViewMessageComponent} from './component/message/view/view';
+import {EventComponent} from './component/event/event.component';
+import { SurveyComponent } from './component/survey/survey.component';
+import { AddSurveyComponent } from './component/survey/add/add';
+import { CurrentSurveyComponent } from './component/survey/current/survey';
+import { ClosedSurveyComponent } from './component/survey/closed/survey';
+import { ViewSurveyComponent } from './component/survey/view/survey'
 import { PollComponent } from './component/poll/poll.component';
 import { AddPollComponent } from './component/poll/add/add';
 import { CurrentPollComponent } from './component/poll/current/poll';
 import { ClosedPollComponent } from './component/poll/closed/poll';
-import {MessageComponent} from './component/message/message.component';
-import {NewMessageComponent} from './component/message/new/new';
-import {ViewMessageComponent} from './component/message/view/view';
-import {EventComponent} from './component/event/event.component'
+import { StudentRatingComponent } from './component/studentRating/studentRating.component'
 
 export const rootRouterConfig: Routes = [
   { path: '', redirectTo : '/dashboard', pathMatch: 'full' },
@@ -62,15 +68,39 @@ export const rootRouterConfig: Routes = [
                   ]
       },
       { path: 'add-poll', component: AddPollComponent, canActivate: [LoggedInGuard] },
-      { path: 'messaging', component: MessageComponent, canActivate: [LoggedInGuard], 
-        children:[
-          { path: 'new-message', component: NewMessageComponent, canActivate: [LoggedInGuard] },
-          { path: 'view-message', component: ViewMessageComponent, canActivate: [LoggedInGuard] },
+      // { path: 'messaging', component: MessageComponent, canActivate: [LoggedInGuard], 
+      //   children:[
+      //     { path: 'new-message', component: NewMessageComponent, canActivate: [LoggedInGuard] },
+      //     { path: 'view-message', component: ViewMessageComponent, canActivate: [LoggedInGuard] },
           
           
+      //   ]
+      // },
+      { path: 'event', component: EventComponent, canActivate: [LoggedInGuard] },
+      { path: 'survey', component: SurveyComponent, canActivate: [LoggedInGuard],
+        children: [
+          { path: 'current-survey', component: CurrentSurveyComponent, canActivate: [LoggedInGuard],
+            // children: [
+
+            //   { path: 'view-survey', component: ViewSurveyComponent, canActivate: [LoggedInGuard] }
+            // ]
+      
+    },
+          { path: 'closed-survey', component: ClosedSurveyComponent, canActivate: [LoggedInGuard] },
+          
+        ] },
+      { path: 'add-survey', component: AddSurveyComponent, canActivate: [LoggedInGuard] },
+            {
+        path: 'poll', component: PollComponent, canActivate: [LoggedInGuard],
+        children: [
+          { path: 'current-poll', component: CurrentPollComponent, canActivate: [LoggedInGuard] },
+          { path: 'closed-poll', component: ClosedPollComponent, canActivate: [LoggedInGuard] }
         ]
       },
-      { path: 'event', component: EventComponent, canActivate: [LoggedInGuard] },
+      { path: 'add-poll', component: AddPollComponent, canActivate: [LoggedInGuard] },
+      {path: 'add-employee', component: AddEmployeeComponent, canActivate: [LoggedInGuard] },
+      {path: 'student-profile', component: StudentRatingComponent, canActivate: [LoggedInGuard]},
+       { path: 'view-survey/:id', component: ViewSurveyComponent, canActivate: [LoggedInGuard] },
       
     
   ]},

@@ -3,10 +3,10 @@
 
     <div class="panel-body" id="accordion">
       <div class="add-button">
-        <button type="button" class="btn btn-success btn-circle pull-right" [routerLink]="['/add-appreciation']">
-          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        </button>
-      </div>
+  <button type="button" class="btn btn-success btn-circle" [routerLink]="['/add-appreciation']">
+  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+</button>
+</div>
       <div style="text-align: center" *ngIf="EmptyComplaints"><b>No Appreciation</b></div>
       <div class="card" *ngFor="let c of complaints; let i = index;">
         <div class="row">

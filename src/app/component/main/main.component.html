@@ -1,14 +1,35 @@
 <div id="wrapper">
   <!--header start-->
-  <div class="header-custom navbar-fixed-top">
+  <!--<div class="header-custom navbar-fixed-top">
     <a class="nav-btn" id="menu-toggle"><i class="glyphicon glyphicon-menu-hamburger"></i></a>
     <picture>
       <source media="(min-width: 750px)" srcset="./icons/header-srgs.png">
       <source media="(min-width: 250px)" srcset="./icons/header-srgs-2.png">
       <img class="header-srgs" src="./icons/header-srgs.png">
     </picture>
+   <img  class="header-srgs"src="./icons/srgs_temp.png">
     <a class="profile-img-container" (click)="displayProfile=!displayProfile"><img class="profile-img" src="{{log.getData('picUrl')}}" *ngIf="log.getData('picUrl')"></a>
-  </div>
+    
+  </div>-->
+      <nav class="navbar navbar-default navbar-fixed-top header" >
+      <div class="">
+        <div class="navbar-header" id="toggle-header">
+          
+          <a class="navbar-brand" id="menu-toggle" style="cursor: pointer;float:right;padding-right: 0px;color:white"><i class="glyphicon glyphicon-menu-hamburger"></i></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-top-links navbar-right">
+             <!--<li class="brand">Cornerstone</li>-->
+             <li class="logo-list"><img src="./icons/srgs_temp.png" class="logo"></li>
+             <li>
+               <a class="profile-img-container" (click)="displayProfile=!displayProfile"><img class="profile-img" src="{{log.getData('picUrl')}}" *ngIf="log.getData('picUrl')"></a>
+             </li>
+            
+             <!--/.dropdown -->
+          </ul>
+        </div>
+      </div>
+    </nav>
 <!-- header end-->
   <div class="profile-card" [hidden]="displayProfile">
     <div class="row">
@@ -46,6 +67,18 @@
   <!-- Sidebar -->
   <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
+       <!--<li class="sidebar-header">
+         <a routerLink="/account"> <div class="profile-display">
+            <div class="accBgImage">
+              <div class="padding">
+              <img class="profile-img" src="{{log.getData('picUrl')}}" *ngIf="log.getData('picUrl')">
+              </div>
+              <div class="profile-name">
+                {{log.getData('name')}}
+              </div>
+            </div>
+          </div> </a>
+        </li>-->
       <li *ngFor="let page of pages;" class="sidebar-items">
         <a [routerLink]="['/'+page.url]" routerLinkActive="active" class="sidebar-link">
           <img class="sidebar-icon" src="{{page.icon}}"> {{page.title}}
@@ -58,6 +91,8 @@
       </li>
     </ul>
   </div>
+    <a class="nav-btn" id="menu-toggle"><i class="glyphicon glyphicon-menu-hamburger"></i></a>
+  <div></div>
   <!-- /#sidebar-wrapper -->
   <!-- Page Content -->
   <div id="page-content-wrapper">

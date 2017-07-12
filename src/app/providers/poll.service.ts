@@ -48,7 +48,7 @@ export class PollService {
 
   
    public getClosedPolls(pageNo: any) {
-		return this.http.get(this.serverUrl + '/poll/old' + '/page/' + pageNo)
+		return this.http.get(this.serverUrl + '/poll/old/page/' + pageNo)
     .map(this.extractData)
     .catch(this.handleError);
 	}

@@ -30,9 +30,15 @@ import { PollComponent } from './component/poll/poll.component';
 import { AddPollComponent } from './component/poll/add/add';
 import { CurrentPollComponent } from './component/poll/current/poll';
 import { ClosedPollComponent } from './component/poll/closed/poll';
-import {MessageComponent} from './component/message/message.component';
-import {NewMessageComponent} from './component/message/new/new';
-import {ViewMessageComponent} from './component/message/view/view';
+import { SurveyComponent } from './component/survey/survey.component';
+import { AddSurveyComponent } from './component/survey/add/add';
+import { CurrentSurveyComponent } from './component/survey/current/survey';
+import { ClosedSurveyComponent } from './component/survey/closed/survey';
+import { ViewSurveyComponent } from './component/survey/view/survey';
+import { StudentRatingComponent } from './component/studentRating/studentRating.component';
+// import {MessageComponent} from './component/message/message.component';
+// import {NewMessageComponent} from './component/message/new/new';
+// import {ViewMessageComponent} from './component/message/view/view';
 import {EventComponent} from './component/event/event.component';
 
 /*Providers */
@@ -51,6 +57,8 @@ import {ValidationService} from './providers/formValidation.service';
 import { AppreciationService} from './providers/appreciation.service';
 import { PollService } from './providers/poll.service';
 import {EventService} from './providers/event.service';
+import { StudentRatingService } from './providers/studentRating.service';
+import { SurveyService } from './providers/survey.service'
 
 @NgModule({
   imports: [
@@ -86,11 +94,18 @@ import {EventService} from './providers/event.service';
     AddPollComponent,
     CurrentPollComponent,
     ClosedPollComponent,
-    MessageComponent,
-    NewMessageComponent, 
-    ViewMessageComponent,
     CalendarComponent,
     EventComponent,
+    SurveyComponent,
+    AddSurveyComponent,
+    CurrentSurveyComponent,
+    ClosedSurveyComponent,
+    PollComponent,
+    AddPollComponent,
+    CurrentPollComponent,
+    ClosedPollComponent,
+    StudentRatingComponent,
+    ViewSurveyComponent,
   ],
   providers: [
     LoggedInGuard,
@@ -107,6 +122,9 @@ import {EventService} from './providers/event.service';
     AppreciationService,
     PollService,
     EventService,
+    PollService,
+    StudentRatingService,
+    SurveyService,
   {
       provide: CustomHttpService,
       useFactory: (backend: XHRBackend, defaultOptions: RequestOptions) => {

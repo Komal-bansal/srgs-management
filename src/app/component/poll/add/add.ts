@@ -17,21 +17,22 @@ export class AddPollComponent implements OnInit {
   public pollInfo: any;
   public standards: any;
   public selectedStandard: any;
-  public disable: boolean = false;
+  // public disable: boolean = false;
   public loader: boolean = false;
 
-  public addPollForm = this.fb.group({});
+  public addPollForm: FormGroup;
 
   constructor(public fb: FormBuilder,
     public cs: CommonService,
     public ps: PollService,
-    private _location:Location ) {
+    private _location: Location) {
   }
 
   ngOnInit() {
     this.getPollInfo();
     this.initForm();
     this.getStandards();
+     $.noConflict(); 
   }
 
   public initForm() {
@@ -41,9 +42,10 @@ export class AddPollComponent implements OnInit {
       'expiredAt': [this.cs.getTomorrow(), [Validators.required]], //Due Date
       'optionTypeId': ['', [Validators.required]],
       // 'standardIds': ['',[Validators.required]],
-      'subOptions': this.fb.array([this.initOptions()]),
+      'subOptions': this.fb.array([
+        this.initOptions(),
+        this.initOptions(),], Validators.minLength(2)),
     })
-
   }
 
   getStandards() {
@@ -56,11 +58,14 @@ export class AddPollComponent implements OnInit {
   }
 
   getPollInfo() {
+    this.loader = true;
     this.cs.getPollInfo().subscribe(res => {
       this.pollInfo = res;
+      this.loader = false;
     },
       err => {
         console.log("Err", err);
+        this.loader = false;
       })
 
   }
@@ -69,18 +74,17 @@ export class AddPollComponent implements OnInit {
     if (event == "1") {
       this.addPollForm.removeControl("standardIds");
       this.selectedStandard = [];
-      this.disable = false;
+      // this.disable = false;
     }
     else if (event == "2") {
       this.selectedStandard = [];
-      this.disable = true;
-      this.addPollForm.addControl("standardIds", new FormControl(''));
-
+      // this.disable = true;
+      this.addPollForm.addControl("standardIds", new FormControl('',Validators.required));
     }
   }
 
   public onStandards(ev: any) {
-    this.disable = false;
+    // this.disable = false;
     var stan = ev;
     this.addPollForm.controls['standardIds'].patchValue(stan);
   }
@@ -112,12 +116,13 @@ export class AddPollComponent implements OnInit {
 
   public submitPoll(obj: any) {
     this.ps.createPoll(obj).subscribe(res => {
-      this.loader=false;
+      this.loader = false;
       $('#submitModal').modal('show');
       this.initForm();
     },
       err => {
         console.log("err", err);
+        this.loader = false;
       })
   }
 

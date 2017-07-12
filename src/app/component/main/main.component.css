@@ -6,10 +6,11 @@ main{
   margin-top: 50px;
 }
 .header-srgs{
-    width: 100%;
-    margin-top: -15px;
-    height:180px;
+      /* margin-top: -15px; */
     position: absolute;
+    top: 21px;
+    right: 95px;
+    width: 77px;
     /*z-index: -1;*/
     /*margin-right: 20px;*/
 }
@@ -19,7 +20,7 @@ main{
 }
 .nav-btn{
     z-index: 1;
-    position:absolute;
+    position:fixed;
     top:0px;
     left:5px;
     border-style: none;
@@ -34,8 +35,12 @@ main{
 }
 .profile-img-container{
     position:absolute;
-    right:18px;
-    top:25px;
+    right: -7px;
+    top: -15px;
+
+}
+.profile-img-container:hover{
+    background: inherit !important;
 }
 .add-btn{
     position: absolute;
@@ -48,7 +53,7 @@ main{
 /*profile card style*/
 .profile-card:after {
 	bottom: 100%;
-	left: 90%;
+	left: 84%;
 	border: solid transparent;
 	content: " ";
 	height: 0;
@@ -57,11 +62,11 @@ main{
 	pointer-events: none;
 	border-color: rgba(136, 183, 213, 0);
 	border-bottom-color: white;
-	border-width: 12px;
-	margin-left: -12px;
+	border-width: 10px;
+	margin-left: -1px;
 }
 .profile-card{
-    z-index:10;
+    z-index:100;
     position: absolute;
     top:70px;
     right: 10px;
@@ -169,7 +174,12 @@ color: grey;
   right: 0;
   left: auto;
 }
-
+.logo{
+    width: 67px !important;
+    height: auto !important;
+    position: absolute;
+    right: 100px;
+}
 /* Toggle Styles */
 
 #wrapper {
@@ -198,10 +208,11 @@ color: grey;
 }
 
 #sidebar-wrapper {
-    margin-top: 10px;
+    margin-top: 34px;
     /*z-index:1;*/
     position: fixed;
     left: 250px;
+    top: 18px;
     width: 0;
     height: 100%;
     margin-left: -250px;
@@ -221,7 +232,9 @@ color: grey;
 #page-content-wrapper {
     width: 100%;
     position: absolute;
-    padding: 15px;
+    top: -10px;
+    /*padding: 15px;*/
+    /*z-index: -10;*/
     /*z-index: 100;*/
 }
 
@@ -239,7 +252,7 @@ color: grey;
     margin: 0;
     padding: 0;
     list-style: none;
-    background:white;
+    background: #303342;
 } 
 
 .sidebar-nav li {
@@ -250,20 +263,25 @@ color: grey;
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #000;
+    /*color: #000;*/
+        color: rgb(24, 105, 176) !important;
+    border-right: solid 4px rgb(24, 105, 176);
 }
 
-.sidebar-nav li a:hover {
+/*.sidebar-nav li a:hover {
     text-decoration: none;
     color: #303342;
     background: rgba(255,255,255,0.2);
-}
+}*/
 
 .sidebar-nav li a:active,
 .sidebar-nav li a:focus {
     text-decoration: none;
-    color: #303342;
-    background: rgba(255,255,255,0.2);
+    /*color: #303342;*/
+    /*color: white;*/
+    /*background: rgba(255,255,255,0.2);*/
+    border-right-color: white;
+    color: white !important;
 }
 
 .sidebar-nav > .sidebar-brand {
@@ -279,6 +297,13 @@ color: grey;
 .sidebar-nav > .sidebar-brand a:hover {
     color: #303342;
     background: none;
+}
+.sidebar-logo{
+    padding: 30px 0px;
+    margin-top: 30px;
+    width: 76px;
+    margin: auto;
+    display: block;
 }
 
 @media(min-width:768px) {
@@ -312,19 +337,29 @@ color: grey;
 .sidebar-items{
     box-shadow: 0 -3px 7px #303342;
 }
+.sidebar-link{
+    color: white !important;
+    border-right: solid 4px rgb(24, 105, 176);
+}
+
+/*.sidebar-link :active{
+    border-right-color: white;
+    color: yellow;
+}*/
+
 /*.sidebar-link:active{
     background-color: #303342;
     color:white;
 }*/
-.sidebar-items a:active{
+/*.sidebar-items a:active{
     background-color: #303342;
-    color:white;
-
-}
-
-.sidebar-items > a {
     color:black;
-}
+
+}*/
+
+/*.sidebar-items > a {
+    color:black;
+}*/
 .sidebar-icon{
     margin-right: 10px;
     width:20px;
@@ -335,16 +370,15 @@ color: grey;
     background: #303342;
 }
 
-.sidebar-header{
-    height: 160px;
-}
+/*.sidebar-header{
+    height: 100px;
+}*/
 
 .profile-display{
-    background: linear-gradient(to bottom, #eae0e0 0%, #303342 100%);
+    /*background: linear-gradient(to bottom, #eae0e0 0%, #303342 100%);*/
     height: 160px;
     display: block;
-    margin-left: auto;
-    margin-right: auto;    
+    margin: auto;
 }
 .accBgImage{
     /*background-image: url(./svg/profile_background.svg) !important;*/
@@ -355,11 +389,14 @@ color: grey;
     height: 50px;
     border-radius: 100%;
     border: white solid 2px;
-    display: block;  
+    /*display: block; */
+    /*margin: auto;*/
+    cursor: pointer; 
 }
-.profile-img:hover{
+/*.profile-img:hover{
     opacity: 0.5;
-}
+    border-radius: 100%;
+}*/
 .profile-name{
     text-decoration-style: none;
     font-size: 12px;
@@ -371,12 +408,12 @@ color: grey;
 .padding{
     padding-top: 10px;
 }
-a{
+/*a{
     color:white;
-}
-a:hover{
+}*/
+/*a:hover{
     color: #303342;
-}
+}*/
 
 div,table,a{
     font-family:'Allerta';
@@ -384,11 +421,6 @@ div,table,a{
 .brand{
     font-family:sans-serif;
     color: white;
-}
-
-.logo{
-    height:40px;
-    width:auto;
 }
 @media screen and(min-width:450px){
     .profile-img-container{display: none;}

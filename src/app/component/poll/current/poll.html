@@ -1,55 +1,64 @@
+<div class="panel panel-default">
+<div class="panel-body">
+<div class="add-button">
+  <button type="button" class="btn btn-success btn-circle" [routerLink]="['/add-poll']">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+  </button>
+</div>
 <br>
-
-
+<div>
 <div class="row text-center">
-        <loader [condition]="loader"></loader>
-      </div>
+  <loader [condition]="loader"></loader>
+</div>
+
 <div class="panel panel-default" *ngIf="emptyPolls">
   No Polls added to the view.
 </div>
-<div *ngIf="!emptyPolls">
-<div class="panel panel-default" *ngFor="let p of polls">
-  <div class="panel-heading">
-    {{p.question}}
-  </div>
-  <div class="panel-body" style="padding: auto 0;">
-    <div class="flot-chart" style="padding:auto 0;">
-      <div class="col-lg-6">
-        <ul class="" style="list-style-type:none;margin:0;padding:0;" *ngFor="let o of p.options">
-          <li class="pollChoice">{{o.name}}
-            <div class="progress pollProgress">
-              <span class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" [attr.aria-valuenow]="o.percent"
-                aria-valuemin="0" aria-valuemax="100" [style.width]="(o.percent/100)*100 + '%'">
-                       <span> {{o.percent}}% </span>
-              </span>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <div class="col-lg-6">
-        <ul class="" style="list-style-type:none;margin:0;padding:0;">
-          <li *ngIf="p.employeeName">Created By: {{p.employeeName}} </li>
-          <li *ngIf="p.typeId==1">Audience: {{p.typeName}} </li>
-          <li *ngIf="p.typeId==2">Audience:
-            <ul *ngFor="let s of p.standards">
-              <li>{{s.name}} </li>
-            </ul>
-          </li>
-          <li>Question Type: {{p.optionTypeName}} </li>
-          <li>Count: {{p.count}}</li>
-          <li>Created At: {{p.createdAt | date: 'shortDate'}}</li>
-          <li>Due Date: {{changeDate(p)}}</li>
-        </ul>
-      </div>
 
+<div *ngIf="!emptyPolls">
+  <div *ngFor="let p of polls" class="panel panel-default">
+    <div class="panel-heading custom-panel-heading">
+      {{p.question}}
     </div>
+    <div class="panel-body" style="padding: auto 0;">
+      <div class="flot-chart" style="padding:auto 0;">
+        <div class="col-lg-6">
+          <ul class="" style="list-style-type:none;margin:0;padding:0;" *ngFor="let o of p.options">
+            <li class="pollChoice">{{o.name}}
+              <div class="progress pollProgress">
+                <span class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" [attr.aria-valuenow]="o.percent"
+                  aria-valuemin="0" aria-valuemax="100" [style.width]="(o.percent/100)*100 + '%'">
+                       <span> {{o.percent}}% </span>
+                </span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-6">
+          <ul class="" style="list-style-type:none;margin:0;padding:0;">
+            <li *ngIf="p.employeeName">Created By: {{p.employeeName}} </li>
+            <li *ngIf="p.typeId==1">Audience: {{p.typeName}} </li>
+            <li *ngIf="p.typeId==2">Audience:
+              <ul *ngFor="let s of p.standards">
+                <li>{{s.name}} </li>
+              </ul>
+            </li>
+            <li>Question Type: {{p.optionTypeName}} </li>
+            <li>Count: {{p.count}}</li>
+            <li>Created At: {{p.createdAt | date: "dd/MM/yy"}}</li>
+            <li>Due Date: {{p.expiredAt | date: "dd/MM/yy"}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
-</div>
+
 <div class="panel-footer">
-      <button type="button" (click)="previousPoll()" [disabled]="currentPage === 1" class="btn btn-danger">Previous</button>
-      <button type="button" (click)="nextPoll()" [disabled]="(!polls) || noMore" class="btn btn-danger">Next</button>
-    </div>
+  <button type="button" (click)="previousPoll()" [disabled]="currentPage === 1" class="btn btn-danger">Previous</button>
+  <button type="button" (click)="nextPoll()" [disabled]="(!polls) || noMore" class="btn btn-danger">Next</button>
+</div>
 
 <!--standards - id,name
 count
@@ -257,3 +266,5 @@ typeName-->
     </div>
   </div>
 </div>-->
+</div>
+</div>
