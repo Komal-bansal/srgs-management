@@ -40,6 +40,10 @@ import { StudentRatingComponent } from './component/studentRating/studentRating.
 // import {NewMessageComponent} from './component/message/new/new';
 // import {ViewMessageComponent} from './component/message/view/view';
 import {EventComponent} from './component/event/event.component';
+import {SuggestionComponent} from './component/suggestion/suggestion.component';
+import {SuggestionForMe} from './component/suggestion/for-me/forme';
+import {SuggestionForStudent} from './component/suggestion/for-student/forstudent';
+import {SuggestionAddComponent} from './component/suggestion/add/add';
 
 /*Providers */
 import { LoggedInGuard } from './component/login/login.gaurd';
@@ -58,7 +62,9 @@ import { AppreciationService} from './providers/appreciation.service';
 import { PollService } from './providers/poll.service';
 import {EventService} from './providers/event.service';
 import { StudentRatingService } from './providers/studentRating.service';
-import { SurveyService } from './providers/survey.service'
+import { SurveyService } from './providers/survey.service';
+import {SuggestionService} from './providers/suggestion.service';
+
 
 @NgModule({
   imports: [
@@ -106,6 +112,10 @@ import { SurveyService } from './providers/survey.service'
     ClosedPollComponent,
     StudentRatingComponent,
     ViewSurveyComponent,
+    SuggestionComponent,
+    SuggestionForMe,
+    SuggestionForStudent,
+    SuggestionAddComponent,
   ],
   providers: [
     LoggedInGuard,
@@ -125,6 +135,7 @@ import { SurveyService } from './providers/survey.service'
     PollService,
     StudentRatingService,
     SurveyService,
+    SuggestionService,
   {
       provide: CustomHttpService,
       useFactory: (backend: XHRBackend, defaultOptions: RequestOptions) => {

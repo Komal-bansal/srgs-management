@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { SurveyService } from '../../../providers/survey.service';
 
 declare let $:any;
@@ -9,7 +9,7 @@ declare let $:any;
   styleUrls: ['./survey.css'],
 })
 
-export class CurrentSurveyComponent {
+export class CurrentSurveyComponent implements OnInit {
   public currentPage: number = 1;
   public surveys: any[];
   public selectedSurvey: any;
@@ -17,10 +17,11 @@ export class CurrentSurveyComponent {
   public noMore: boolean = false;
 
 
-  constructor( public ss: SurveyService) {
-    this.getSurveys();
-  }
+  constructor( public ss: SurveyService) {}
 
+  ngOnInit(){
+        this.getSurveys();
+  }
   public getSurveys(){
     this.ss.getSurveys(this.currentPage).subscribe(res=>{
       if(res.status == 204){

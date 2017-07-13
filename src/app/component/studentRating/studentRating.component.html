@@ -57,7 +57,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let r of respStu.profile; let i=index;" [formGroupName]="i">
-              <td>
+              <td class="col-sm-10 col-xs-6">
                 <input *ngIf="respStu.isEmpty" type="text" formControlName="profileId" style="display:none;">
                 <input *ngIf="!respStu.isEmpty" type="text" formControlName="profileId" style="display:none;" [value]="r.id" [ngModel]="r.id">
 
@@ -65,7 +65,7 @@
                 <input type="text" formControlName="responsibilityId" style="display:none;" [(value)]="r.responsibilityId" [ngModel]="r.responsibilityId">{{r.responsibility}}
               </td>
 
-              <td>
+              <td class="col-sm-2 col-xs-6">
                 <span  *ngFor="let p of respStu.rating;let ii=index">
                   <!--<div class="star-rating" >-->
                   <!--<div class="star-rating__wrap">-->

@@ -16,6 +16,7 @@
 </div>
 
 <div *ngIf="!emptyPolls" class="panel-body">
+  <div style="margin-top: 2%;padding-top: 1%;">
   <div class="panel panel-default" *ngFor="let p of polls">
     <div class="panel-heading custom-panel-heading">
       {{p.question}}
@@ -53,11 +54,12 @@
       </div>
     </div>
   </div>
+  </div>
 </div>
 
 <div class="panel-footer">
-  <button type="button" (click)="previousPoll()" [disabled]="currentPage === 1" class="btn btn-danger">Previous</button>
-  <button type="button" (click)="nextPoll()" [disabled]="(!polls) || noMore" class="btn btn-danger">Next</button>
+  <button type="button" (click)="previousPoll()" [disabled]="currentPage === 1" class="btn btn-primary">Previous</button>
+  <button type="button" (click)="nextPoll()" [disabled]="(!polls) || noMore" class="btn btn-primary">Next</button>
 </div>
 
 <!--standards - id,name
@@ -118,8 +120,8 @@ typeName-->
     
 
     <div class="panel-footer">
-      <button type="button" class="btn btn-danger">Previous</button>
-      <button type="button" class="btn btn-danger">Next</button>
+      <button type="button" class="btn btn-primary">Previous</button>
+      <button type="button" class="btn btn-primary">Next</button>
     </div>
   </div>
 </div>
@@ -143,7 +145,7 @@ typeName-->
         <div class="col-sm-6" ><label class="heading">Due date</label><div class="result">Due Date Here</div></div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

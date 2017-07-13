@@ -65,7 +65,8 @@ a{
 }
 
 .modal-header{
-    background:#303342;
+    /* background:#ea212e; */
+    background: #337ab7;
     color:white;
     box-shadow: 0 0 10px black;
 }
@@ -80,7 +81,7 @@ a{
   padding: 6px 0;
   font-size: 12px;
   line-height: 1.42;
-  border-radius: 15px;
+   border-radius: 15px; 
 }
 
   .glyphicon-calendar:before{
@@ -88,7 +89,7 @@ a{
     padding-right: 10px;
 }
 .badge{
-    background-color: #303342;
+    background-color: #3977a5;
 }
 .img-center{
     position:absolute;
@@ -106,7 +107,7 @@ a{
     top: 5px;
 }
 .btn-danger{
-    background-color: #c9302c !important;
+    background-color: #337ab7 !important;
 }
 .btn-danger:hover{
     color: #c9302c !important;
@@ -269,7 +270,8 @@ hr.style-line {
 }
 .add-button{
     /*float: right;*/
-    width: 100%;
+    width: 5%;
+    float: right;
 }
 /*search */
 #example-search-input{
@@ -298,3 +300,4 @@ hr.style-line {
 .custom-panel-heading{
     background: #adada2 !important;
 }
+

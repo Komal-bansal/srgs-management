@@ -36,7 +36,7 @@ main{
 .profile-img-container{
     position:absolute;
     right: -7px;
-    top: -15px;
+    top: -25px;
 
 }
 .profile-img-container:hover{
@@ -68,8 +68,8 @@ main{
 .profile-card{
     z-index:100;
     position: absolute;
-    top:70px;
-    right: 10px;
+    top: 58px;
+    right: 7px;
     width:300px;
     height: 177px;
     background: white;
@@ -264,8 +264,7 @@ color: grey;
     display: block;
     text-decoration: none;
     /*color: #000;*/
-        color: rgb(24, 105, 176) !important;
-    border-right: solid 4px rgb(24, 105, 176);
+    border-right: solid 4px white;
 }
 
 /*.sidebar-nav li a:hover {
@@ -274,15 +273,12 @@ color: grey;
     background: rgba(255,255,255,0.2);
 }*/
 
-.sidebar-nav li a:active,
+ /* .sidebar-nav li a:active,
 .sidebar-nav li a:focus {
     text-decoration: none;
-    /*color: #303342;*/
-    /*color: white;*/
-    /*background: rgba(255,255,255,0.2);*/
-    border-right-color: white;
-    color: white !important;
-}
+    border-right: 4px solid  grey;
+    color: grey !important;
+}  */
 
 .sidebar-nav > .sidebar-brand {
     height: 65px;
@@ -338,8 +334,8 @@ color: grey;
     box-shadow: 0 -3px 7px #303342;
 }
 .sidebar-link{
-    color: white !important;
-    border-right: solid 4px rgb(24, 105, 176);
+    color: white ;
+    /* border-right: solid 4px rgb(214, 167, 0); */
 }
 
 /*.sidebar-link :active{
@@ -385,8 +381,8 @@ color: grey;
     background-size: 100% auto;
 }
 .profile-img{
-    width: 50px;
-    height: 50px;
+    width: 43px;
+    height: 43px;
     border-radius: 100%;
     border: white solid 2px;
     /*display: block; */
@@ -422,7 +418,9 @@ div,table,a{
     font-family:sans-serif;
     color: white;
 }
-@media screen and(min-width:450px){
-    .profile-img-container{display: none;}
 
+.selected{
+    background: white;
+    color: #303342 !important;
+    border-right: 4px solid #303342;
 }

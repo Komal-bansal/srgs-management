@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { StudentRatingService } from '../../providers/studentRating.service';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 // import * as moment_ from 'moment';
@@ -13,12 +13,14 @@ declare let $: any;
   styleUrls: ['./studentRating.component.css']
 })
 
-export class StudentRatingComponent {
+export class StudentRatingComponent implements OnInit{
 
   constructor(public srs: StudentRatingService,
     public fb: FormBuilder,
-  ) {
-    this.getStudents();
+  ) { }
+
+  ngOnInit(){
+     this.getStudents();
      $.noConflict(); 
   }
 

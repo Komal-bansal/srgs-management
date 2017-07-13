@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { CommonService } from '../../../providers/common.service';
 import { SurveyService } from '../../../providers/survey.service';
@@ -13,7 +13,7 @@ declare let $: any;
   styleUrls: ['./add.css'],
 })
 
-export class AddSurveyComponent {
+export class AddSurveyComponent implements OnInit {
 
   public surveyForm: FormGroup;
   public standards: any[];
@@ -29,7 +29,9 @@ export class AddSurveyComponent {
     public fb: FormBuilder,
     public vs: ValidationService,
     public _location: Location,
-  ) {
+  ) { }
+
+  ngOnInit(){
     this.loader=true;
     this.getSurveyInfo();
     this.initForm();

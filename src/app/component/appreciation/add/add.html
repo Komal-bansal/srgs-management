@@ -17,14 +17,13 @@
       <div class="form-group">
         <label for="standardId">Select Year</label>
         <select class="form-control" id="standardId" name="standardId"(ngModelChange)="selectStandards($event)" [(ngModel)]="StandardId"
-          [ngModelOptions]="{standalone: true}" >
+          [ngModelOptions]="{standalone: true}">
           <option *ngFor="let a of standards" [ngValue]="a.id"> {{a.name}}</option>
         </select>
-    <!--<div>
-      <div [hidden]="appreciation.controls.standardId.valid || appreciation.controls.standardId.untouched " class="alert alert-warning">This field is required</div>
-    </div>-->
+      <!-- <div [hidden]="appreciation.controls.standardId.valid || appreciation.controls.standardId.untouched " class="alert alert-warning">This field is required</div> -->
+
       </div>
-      <div class="form-group" *ngIf="appreciation.value.standardId">
+      <div class="form-group">
         <label for="studentId">Student Name</label>
         <select class="form-control" formControlName="studentId" name="studentId">
             <option *ngFor="let s of students" [ngValue]="s.id">{{s.name}}</option>
@@ -59,7 +58,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" [routerLink]="['/suggestion/for-student']">Close</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Add More</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Add More</button>
       </div>
     </div>
   </div>

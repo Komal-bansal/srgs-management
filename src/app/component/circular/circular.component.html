@@ -1,25 +1,25 @@
-<!--<h1>Circulars
+<!-- <h1>Circulars
   <button type="button" class="btn btn-success btn-circle" [routerLink]="['/add-circular']">
   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 </button>
-</h1>-->
+</h1> -->
 <div class="panel panel-default">
   <!-- Default panel contents -->
   <div class="panel-heading">Circulars</div>
 
   <!-- Table -->
   <div class="panel-body">
-    <div class="add-button">
+     <div class="add-button">
       <button type="button" class="btn btn-success btn-circle" [routerLink]="['/add-circular']">
   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 </button>
-    </div>
+    </div> 
     <div style="text-align: center" *ngIf="EmptyCirculars"><b>No Circular added to View</b></div>
 
     <div class="row text-center">
       <loader [condition]="loader"></loader>
     </div>
-
+  <div style="margin-top: 2%;padding-top: 1%;">
     <div class="container card" *ngFor="let circular of circulars">
       <div class="row">
         <span class="glyphicon glyphicon-resize-full expand" (click)="seletToExpand(circular)" data-toggle="modal" data-target="#myModal-card"></span>
@@ -52,6 +52,7 @@
         </div>
       </div>-->
     </div>
+  </div>
     <!--end cards-->
   </div>
 
@@ -66,8 +67,8 @@
         <li class="page-item" [ngClass]="{'disabled': EmptyCirculars}"><a class="page-link" (click)="nextCircular()">Next</a></li>
       </ul>
     </nav>-->
-    <button (click)="previousCircular()" class="btn btn-danger nav-btn right" [disabled]="currentPage === 1">Previous</button>
-    <button (click)="nextCircular()" class="btn right btn-danger nav-btn" [disabled]="EmptyCirculars || noMore">Next</button>
+    <button (click)="previousCircular()" class="btn btn-primary nav-btn right" [disabled]="currentPage === 1">Previous</button>
+    <button (click)="nextCircular()" class="btn right btn-primary nav-btn" [disabled]="EmptyCirculars || noMore">Next</button>
   </div>
 </div>
 
@@ -97,7 +98,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
       </div>
     </div>
     <!-- /.modal-content -->

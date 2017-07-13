@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@angular/forms';
 import { CommonService } from '../../../providers/common.service';
 import { PollService } from '../../../providers/poll.service';
+
 
 declare let $: any;
 
@@ -11,7 +12,7 @@ declare let $: any;
   styleUrls: ['./poll.css'],
 })
 
-export class ClosedPollComponent {
+export class ClosedPollComponent  implements OnInit{
 
 public noMore: boolean = false;
 public emptyPolls:boolean = false;
@@ -20,7 +21,10 @@ public currentPage=1;
 public loader:boolean = false;
 
   constructor(public ps: PollService){
-    this.getClosedPolls();
+  }
+
+  ngOnInit(){
+        this.getClosedPolls();
   }
 
   public getClosedPolls(){

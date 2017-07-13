@@ -265,6 +265,7 @@ export class ComplaintComponent implements OnInit, AfterViewInit {
     this.cs.getComplaintCommentById(this.url, complaint.id).subscribe((res) => {
       if (res.status === 204) {
         this.EmptyComments = true;
+        this.loader1=false;
       } else {
         this.EmptyComments = false;
         this.comments = res;

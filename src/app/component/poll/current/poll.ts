@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@angular/forms';
 import { CommonService } from '../../../providers/common.service';
 import { PollService } from '../../../providers/poll.service';
@@ -11,7 +11,7 @@ declare let $: any;
   styleUrls: ['./poll.css'],
 })
 
-export class CurrentPollComponent {
+export class CurrentPollComponent implements OnInit {
 
   public polls:any[] = [];
   public date: any;
@@ -20,8 +20,9 @@ export class CurrentPollComponent {
   public loader: boolean = false;
   public emptyPolls:boolean = false;
   constructor(public ps: PollService) {
-
-    this.getPolls();
+  }
+  ngOnInit(){
+      this.getPolls();
   }
 
   public getPolls() {

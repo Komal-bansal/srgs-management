@@ -67,3 +67,8 @@ form{
   padding-right:0px !important;
 }
 /*card-modal end*/
+
+.alternate-img{
+  width: 120px;
+  height: 120px;
+}
