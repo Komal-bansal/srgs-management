@@ -89,10 +89,12 @@
         <div class="row modal-description">{{selectedCircular.description}}</div>
         <hr class="style-line">
         <div class="row">
-          <div class="col-sm-6"><label class="heading">Created At</label>
+          <div class="col-sm-2 col-xs-2"><i class="glyphicon glyphicon-calendar pull-right"></i></div>
+          <div class="col-sm-5 col-xs-5">
+            <label class="heading">Created At</label>
             <div class="result">{{selectedCircular.createdAt | date: "shortDate"}}</div>
           </div>
-          <div class="col-sm-6"><label class="heading">Start date</label>
+          <div class="col-sm-5 col-xs-5"><label class="heading">Start date</label>
             <div class="result">{{selectedCircular.start | date: "shortDate"}}</div>
           </div>
         </div>

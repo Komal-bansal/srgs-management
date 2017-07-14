@@ -197,7 +197,7 @@ htlm, body
 }
 
 #chat > .panel-heading , #chat > .panel-footer{
-    background:#ea212e;
+    background:#337ab7;
 }
 .send-button{
     float:right;
@@ -206,7 +206,7 @@ htlm, body
 
 .send-button > .btn{
     background: white;
-    color: red;
+    color: #337ab7;
     border-radius: 100% !important;
     margin-top:25%;
     margin-right: 2px;
@@ -263,9 +263,6 @@ h1{
     height: auto;
 }
 
-.glyphicon-calendar:before{
-    font-size: 30px;
-}
 .coloumn-middle{
     height: 100px;
 }
@@ -289,7 +286,7 @@ h1{
 
 .complaint-modal-head{
     height:120px;
-    display:table;
+    /* display:table; */
 }
 
 .middle-title{

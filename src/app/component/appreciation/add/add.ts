@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AppreciationService } from '../../../providers/appreciation.service';
 import { CommonService } from '../../../providers/common.service';
 import { Location } from '@angular/common';
+declare let $:any;
 @Component({
   selector:'add-appreciation',
   templateUrl:'./add.html',
@@ -10,7 +11,6 @@ import { Location } from '@angular/common';
 })
 
 export class AddAppreciation{
-  
   public title: string = "New Appreciation";
   public appreciation: FormGroup;
   public submitProgress:boolean = false;
@@ -45,7 +45,7 @@ export class AddAppreciation{
         this.appreciationService.postAppreciation(this.appreciation.value).subscribe((res) => {
       // this.submitProgress = false;
       this.initForm();
-      // $('#circularModal').modal('show');
+      $('#appreciationModal').modal('show');
     }, (err) => {
 
     });

@@ -419,7 +419,7 @@ div,table,a{
     color: white;
 }
 
-.selected{
+ .active{
     background: white;
     color: #303342 !important;
     border-right: 4px solid #303342;

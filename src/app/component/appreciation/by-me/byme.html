@@ -73,7 +73,7 @@
         <div class="card-modal">
 
           <div class="row">
-            <div class="modal-heading">
+            <div class="modal-heading" style="margin-top:-14px">
               <img class="modal-image" [attr.src]="fileUrl + selectedComplaint.studentPicUrl">
             </div>
           </div>
@@ -91,27 +91,18 @@
           </div>
           <hr class="style-line">
           <div class="row">
-            <span class="custom-icon"><i class="glyphicon glyphicon-calendar"></i></span>
-            <span class="custom-date">
-            <label class="heading">Created At</label>
-            <div class="result">{{selectedComplaint.createdAt | date: "shortDate"}}</div>
-          </span>
+            <div class="col-sm-3">
+              <i class="glyphicon glyphicon-calendar pull-right"></i>
+            </div>
+            <div class="col-sm-9" >
+              <label class="heading">Created At</label>
+              <div class="result">{{selectedComplaint.createdAt | date: "shortDate"}}</div>
+            </div>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <div class="row">
-          <div class="col-sm-4 col-xs-4">
-            <button [ngClass]="{'disabled-click' : selectedComplaint.statusId == 4}" (click)="selectComplaint(c,in)" data-toggle="modal"
-              data-target="#myModal" class="btn btn-primary modal-btn " data-dismiss="modal">Edit<i class="glyphicon glyphicon-pencil icon"></i></button>
-          </div>
-          <div class="col-sm-4 col-xs-4">
-            <button onclick="$('.panel.panel-chat').show();" (click)="getComplaintCommentById(c)" class="btn btn-primary modal-btn" data-dismiss="modal">Comment<i class="glyphicon glyphicon-comment icon"></i></button>
-          </div>
-          <div class="col-sm-4 col-xs-4">
-            <button type="button" class="btn btn-primary modal-btn" data-dismiss="modal">Close<i class="glyphicon glyphicon-remove icon"></i></button>
-          </div>
-        </div>
+            <button type="button" class="btn btn-primary modal-btn" data-dismiss="modal">Close</button>
       </div>
     </div>
     <!-- /.modal-content -->

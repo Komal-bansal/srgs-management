@@ -80,15 +80,15 @@
           </div> </a>
         </li>-->
       <li *ngFor="let page of pages; let i=index" class="sidebar-items">
-        <a [routerLink]="['/'+page.url]" routerLinkActive="active" [ngClass]="{'sidebar-link':true,'selected':(selectedIndex===i)}" (click)="getSelectedLink(i)">
+        <a [routerLink]="['/'+page.url]" routerLinkActive="active" (click)="getSelectedLink(i)">
           <img class="sidebar-icon" src="{{page.icon}}"> {{page.title}}
         </a>
       </li>
-      <li class="sidebar-items" data-toggle="modal" data-target=".bs-example-modal-sm">
+      <!-- <li class="sidebar-items" data-toggle="modal" data-target=".bs-example-modal-sm">
         <a href="#" routerLinkActive="active">
           <img class="sidebar-icon" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-9/256/Logout-icon.png">          Logout
         </a>
-      </li>
+      </li> -->
     </ul>
   </div>
     <a class="nav-btn" id="menu-toggle"><i class="glyphicon glyphicon-menu-hamburger"></i></a>
