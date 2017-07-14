@@ -6,9 +6,8 @@
   </button>
   </div>
 
-  <div>
-    <loader [condition]="loader">
-    </loader>
+  <div class="row text-center">
+    <loader [condition]="loader"></loader>
   </div>
 
   <form [formGroup]="surveyForm" (submit)="submitSurvey()" *ngIf="surveyInfo">
@@ -85,7 +84,7 @@
           </div>
 
           <div class="form-group col-sm-2 col-xs-6" style=" margin-top: 23px;">
-            <button type="button" class="btn btn-primary active" title="Delete Question" (click)="removeQuestions(surveyForm,i)">
+            <button type="button" class="btn btn-primary active" title="Delete Question" (click)="removeQuestions(surveyForm,i)" [disabled]="surveyForm.controls.surveyQuestions.length<=1">
               <span class="glyphicon glyphicon-trash" ></span>
              </button>
           </div>
@@ -100,7 +99,7 @@
               </div>
 
               <div class="col-xs-2" style="margin-top:23px;">
-                <button type="button" class="btn btn-primary active" title="Delete Options" (click)="removeOptions(surveyForm,i,ii)">
+                <button type="button" class="btn btn-primary active" title="Delete Options" (click)="removeOptions(surveyForm,i,ii)" [disabled]="surveyForm.controls.surveyQuestions.controls[i].controls.choices.length<=2">
                     <span class="glyphicon glyphicon-remove"></span>
                 </button>
               </div>
@@ -116,7 +115,7 @@
               Minimum 2 options are required.
             </div>
           </div>
-<!--
+          <!--
           <div class="alert alert-warning col-xs-10" *ngIf="surveyForm.value.surveyQuestions[i].type==3">
             No options for text-type questions.
           </div>-->

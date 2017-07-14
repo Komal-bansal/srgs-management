@@ -72,7 +72,7 @@
           </div>
 
           <div class="col-lg-2">
-            <button type="button" class="btn btn-primary active" (click)="removeOptions(addPollForm,i)">
+            <button type="button" class="btn btn-primary active" [disabled]="addPollForm.controls.subOptions.length<=2" (click)="removeOptions(addPollForm,i)">
                     <span class="glyphicon glyphicon-remove"></span>
                 </button>
           </div>

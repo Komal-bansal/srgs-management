@@ -1,7 +1,7 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SurveyService } from '../../../providers/survey.service';
 
-declare let $:any;
+declare let $: any;
 
 @Component({
   selector: 'closed-survey',
@@ -9,33 +9,37 @@ declare let $:any;
   styleUrls: ['./survey.css'],
 })
 
-export class ClosedSurveyComponent  implements OnInit{
+export class ClosedSurveyComponent implements OnInit {
   public currentPage: number = 1;
   public surveys: any[];
   public selectedSurvey: any;
   public emptySurveys: boolean = false;
   public noMore: boolean = false;
+  public loader: boolean = false;
 
+  constructor(public ss: SurveyService) { }
 
-  constructor( public ss: SurveyService) {  }
-
-  ngOnInit(){
+  ngOnInit() {
     this.getSurveys();
   }
-  public getSurveys(){
-    this.ss.getClosedSurveys(this.currentPage).subscribe(res=>{
-      if(res.status == 204){
+
+  public getSurveys() {
+    this.loader = true;
+    this.ss.getClosedSurveys(this.currentPage).subscribe(res => {
+      if (res.status == 204) {
         this.emptySurveys = true;
+        this.loader = false;
         return;
       }
       this.surveys = res;
-     if(this.surveys.length < 10) this.noMore = true;
+      if (this.surveys.length < 10) this.noMore = true;
       else this.noMore = false;
-      console.log("success", this.surveys);
+      this.loader = false;
     },
-    err=>{
-      console.log("err",err);
-    })
+      err => {
+        console.log("err", err);
+        this.loader = false;
+      })
   }
 
   public previousSurvey() {

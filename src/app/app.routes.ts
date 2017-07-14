@@ -21,7 +21,7 @@ import { LoggedInGuard } from './component/login/login.gaurd';
 // import {MessageComponent} from './component/message/message.component';
 // import {NewMessageComponent} from './component/message/new/new';
 // import {ViewMessageComponent} from './component/message/view/view';
-import { EventComponent } from './component/event/event.component';
+// import { EventComponent } from './component/event/event.component';
 import { SurveyComponent } from './component/survey/survey.component';
 import { AddSurveyComponent } from './component/survey/add/add';
 import { CurrentSurveyComponent } from './component/survey/current/survey';
@@ -36,10 +36,12 @@ import { SuggestionComponent } from './component/suggestion/suggestion.component
 import { SuggestionForMe } from './component/suggestion/for-me/forme';
 import { SuggestionForStudent } from './component/suggestion/for-student/forstudent';
 import { SuggestionAddComponent } from './component/suggestion/add/add';
+import { ErrorComponent } from './component/error/error.component';
 
 export const rootRouterConfig: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+   {path:'error', component: ErrorComponent },
   {
     path: '', component: MainComponent, canActivate: [LoggedInGuard],
     children: [
@@ -77,29 +79,14 @@ export const rootRouterConfig: Routes = [
         ]
       },
       { path: 'add-poll', component: AddPollComponent, canActivate: [LoggedInGuard] },
-      // { path: 'messaging', component: MessageComponent, canActivate: [LoggedInGuard], 
-      //   children:[
-      //     { path: 'new-message', component: NewMessageComponent, canActivate: [LoggedInGuard] },
-      //     { path: 'view-message', component: ViewMessageComponent, canActivate: [LoggedInGuard] },
-
-
-      //   ]
-      // },
-      { path: 'event', component: EventComponent, canActivate: [LoggedInGuard] },
+      // { path: 'event', component: EventComponent, canActivate: [LoggedInGuard] },
       {
         path: 'survey', component: SurveyComponent, canActivate: [LoggedInGuard],
         children: [
           {
-            path: 'current-survey', component: CurrentSurveyComponent, canActivate: [LoggedInGuard],
-            // children: [
-
-            //   { path: 'view-survey', component: ViewSurveyComponent, canActivate: [LoggedInGuard] }
-            // ]
-
-          },
+            path: 'current-survey', component: CurrentSurveyComponent, canActivate: [LoggedInGuard],},
           { path: 'closed-survey', component: ClosedSurveyComponent, canActivate: [LoggedInGuard] },
-
-        ]
+                  ]
       },
       { path: 'add-survey', component: AddSurveyComponent, canActivate: [LoggedInGuard] },
       {
@@ -122,6 +109,7 @@ export const rootRouterConfig: Routes = [
       },
       { path: 'suggestion-add', component: SuggestionAddComponent, canActivate: [LoggedInGuard] },
 
-    ]
+    ],
+   
   },
 ];
