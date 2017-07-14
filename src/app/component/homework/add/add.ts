@@ -20,6 +20,7 @@ export class HomeworkAddComponent implements OnInit{
   public submitProgress:boolean = false;
   standards:any = [];
   subjects:any = [];
+  public emptySubjects:boolean = true;
 
 
   constructor(private homeworkService: HomeworkService,
@@ -55,9 +56,16 @@ export class HomeworkAddComponent implements OnInit{
 
   getSubjects(a:any) {
     // this.nl.showLoader();
-    this.homeworkService.getSubjects(a).subscribe((data) => {
+     this.subjects = [];
+    this.homeworkService.getSubjects(a).subscribe(res => {
+       if(res.status==204){
+        this.emptySubjects = true;
+        this.subjects = [];
+        return;
+      }
+      this.emptySubjects = false;
       // this.nl.hideLoader();
-      this.subjects = data;
+      this.subjects = res;
     }, (err) => {
       // this.nl.onError(err);
       // this.viewCtrl.dismiss();

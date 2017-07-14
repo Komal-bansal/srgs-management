@@ -10,7 +10,7 @@ import { SurveyComponent } from '../survey/survey.component';
 import { PollComponent } from '../poll/poll.component'
 import { StudentRatingComponent } from '../studentRating/studentRating.component'
 import {MessageComponent} from '../message/message.component';
-import {EventComponent} from '../event/event.component';
+// import {EventComponent} from '../event/event.component';
 import {SuggestionComponent} from '../suggestion/suggestion.component';
 
 import {AccountComponent} from '../account/account.component';
@@ -37,7 +37,7 @@ export class MainComponent implements OnInit, AfterViewInit{
       { title: 'Survey', component: SurveyComponent, icon: 'icons/survey.png', url: '/survey/current-survey'},
       { title: 'Poll', component: PollComponent, icon: 'icons/poll.png', url: '/poll/current-poll'},
       { title: 'Student Rating', component: StudentRatingComponent, icon: 'icons/rating.png', url: '/student-profile'},
-      { title: 'Suggestion', component: EventComponent, icon: 'icons/suggestion.png', url: '/suggestion/for-me'} ,
+      // { title: 'Suggestion', component: EventComponent, icon: 'icons/suggestion.png', url: '/suggestion/for-me'} ,
       { title: 'Profile', component: AccountComponent, icon: 'icons/profile.png', url: '/account'},      
       // { title: 'Message', component: MessageComponent, icon: 'icons/message.png', url: '/messaging'},
       // { title: 'Events', component: EventComponent, icon: 'icons/event.png', url: '/event'}

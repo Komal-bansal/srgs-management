@@ -6,9 +6,8 @@
   </button>
   </div>
 
-  <div>
-    <loader [condition]="loader">
-    </loader>
+  <div class="row text-center">
+    <loader [condition]="loader"></loader>
   </div>
 
   <form [formGroup]="surveyForm" (submit)="submitSurvey()" *ngIf="surveyInfo">
@@ -65,13 +64,13 @@
       <div formArrayName="surveyQuestions">
         <div class="row" *ngFor="let q of surveyForm.controls.surveyQuestions.controls; let i=index;" [formGroupName]="i" style="background: rgba(232, 238, 238, 0.59); margin: 10px 1px; padding: 7px 5px;">
 
-          <div class="form-group col-xs-5">
-            <label for="text">Question {{i+1}}</label>
+          <div class="form-group col-sm-4 col-xs-6">
+            <label for="text" class="question">Question {{i+1}}</label>
             <input type="text" class="form-control" placeholder="Enter Question {{i+1}}" id="text" formControlName="text">
           </div>
 
-          <div class="form-group col-xs-4">
-            <label for="surveyType">Question Type</label>
+          <div class="form-group col-sm-4 col-xs-6">
+            <label for="surveyType" class="question">Question Type</label>
             <select class="form-control" id="surveyType" formControlName="type">
 
               <!--(ngModelChange)="onQuestionType($event,surveyForm.controls.surveyQuestions.controls[i])"-->
@@ -79,13 +78,13 @@
             </select>
           </div>
 
-          <div class="form-group col-xs-2">
+          <div class="form-group col-sm-2 col-xs-6" style="    margin-top: 23px;">
             <button type="button" class="btn btn-primary" title="Add Options" [disabled]="(surveyForm.controls.surveyQuestions.controls[i].controls.choices.length==surveyInfo.optionLimit)"
               (click)="addOptions(surveyForm,i)">Add Options</button>
           </div>
 
-          <div class="form-group col-xs-1">
-            <button type="button" class="btn btn-primary active" title="Delete Question" (click)="removeQuestions(surveyForm,i)">
+          <div class="form-group col-sm-2 col-xs-6" style=" margin-top: 23px;">
+            <button type="button" class="btn btn-primary active" title="Delete Question" (click)="removeQuestions(surveyForm,i)" [disabled]="surveyForm.controls.surveyQuestions.length<=1">
               <span class="glyphicon glyphicon-trash" ></span>
              </button>
           </div>
@@ -99,8 +98,8 @@
                 <input type="text" class="form-control" formControlName="choice" placeholder="Enter Choice {{ii+1}}" id="ch">
               </div>
 
-              <div class="col-xs-2">
-                <button type="button" class="btn btn-primary active" title="Delete Options" (click)="removeOptions(surveyForm,i,ii)">
+              <div class="col-xs-2" style="margin-top:23px;">
+                <button type="button" class="btn btn-primary active" title="Delete Options" (click)="removeOptions(surveyForm,i,ii)" [disabled]="surveyForm.controls.surveyQuestions.controls[i].controls.choices.length<=2">
                     <span class="glyphicon glyphicon-remove"></span>
                 </button>
               </div>
@@ -116,7 +115,7 @@
               Minimum 2 options are required.
             </div>
           </div>
-<!--
+          <!--
           <div class="alert alert-warning col-xs-10" *ngIf="surveyForm.value.surveyQuestions[i].type==3">
             No options for text-type questions.
           </div>-->
@@ -137,7 +136,7 @@
 
     <div class="panel-footer">
       <button type="submit" class="btn btn-success" [disabled]="(surveyForm.invalid)">Submit</button>
-      <button type="button" class="btn btn-primary" [disabled]="((surveyForm.controls.surveyQuestions.length==surveyInfo.questionLimit)||(surveyForm.invalid))"
+      <button type="button" class="btn btn-primary" [disabled]="surveyForm.controls.surveyQuestions.length==surveyInfo.questionLimit"
         (click)="addQuestions(surveyForm)">Add Questions</button>
     </div>
   </form>

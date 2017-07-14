@@ -21,7 +21,7 @@ import { LoggedInGuard } from './component/login/login.gaurd';
 // import {MessageComponent} from './component/message/message.component';
 // import {NewMessageComponent} from './component/message/new/new';
 // import {ViewMessageComponent} from './component/message/view/view';
-import { EventComponent } from './component/event/event.component';
+// import { EventComponent } from './component/event/event.component';
 import { SurveyComponent } from './component/survey/survey.component';
 import { AddSurveyComponent } from './component/survey/add/add';
 import { CurrentSurveyComponent } from './component/survey/current/survey';
@@ -85,7 +85,7 @@ export const rootRouterConfig: Routes = [
 
       //   ]
       // },
-      { path: 'event', component: EventComponent, canActivate: [LoggedInGuard] },
+      // { path: 'event', component: EventComponent, canActivate: [LoggedInGuard] },
       {
         path: 'survey', component: SurveyComponent, canActivate: [LoggedInGuard],
         children: [

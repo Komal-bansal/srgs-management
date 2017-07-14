@@ -39,7 +39,7 @@ import { StudentRatingComponent } from './component/studentRating/studentRating.
 // import {MessageComponent} from './component/message/message.component';
 // import {NewMessageComponent} from './component/message/new/new';
 // import {ViewMessageComponent} from './component/message/view/view';
-import {EventComponent} from './component/event/event.component';
+// import {EventComponent} from './component/event/event.component';
 import {SuggestionComponent} from './component/suggestion/suggestion.component';
 import {SuggestionForMe} from './component/suggestion/for-me/forme';
 import {SuggestionForStudent} from './component/suggestion/for-student/forstudent';
@@ -60,7 +60,7 @@ import {AdminService} from './providers/admin.service';
 import {ValidationService} from './providers/formValidation.service';
 import { AppreciationService} from './providers/appreciation.service';
 import { PollService } from './providers/poll.service';
-import {EventService} from './providers/event.service';
+// import {EventService} from './providers/event.service';
 import { StudentRatingService } from './providers/studentRating.service';
 import { SurveyService } from './providers/survey.service';
 import {SuggestionService} from './providers/suggestion.service';
@@ -101,7 +101,7 @@ import {SuggestionService} from './providers/suggestion.service';
     CurrentPollComponent,
     ClosedPollComponent,
     CalendarComponent,
-    EventComponent,
+    // EventComponent,
     SurveyComponent,
     AddSurveyComponent,
     CurrentSurveyComponent,
@@ -131,7 +131,7 @@ import {SuggestionService} from './providers/suggestion.service';
     AdminService,
     AppreciationService,
     PollService,
-    EventService,
+    // EventService,
     PollService,
     StudentRatingService,
     SurveyService,
