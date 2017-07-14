@@ -36,14 +36,12 @@ import { CurrentSurveyComponent } from './component/survey/current/survey';
 import { ClosedSurveyComponent } from './component/survey/closed/survey';
 import { ViewSurveyComponent } from './component/survey/view/survey';
 import { StudentRatingComponent } from './component/studentRating/studentRating.component';
-// import {MessageComponent} from './component/message/message.component';
-// import {NewMessageComponent} from './component/message/new/new';
-// import {ViewMessageComponent} from './component/message/view/view';
 // import {EventComponent} from './component/event/event.component';
 import {SuggestionComponent} from './component/suggestion/suggestion.component';
 import {SuggestionForMe} from './component/suggestion/for-me/forme';
 import {SuggestionForStudent} from './component/suggestion/for-student/forstudent';
 import {SuggestionAddComponent} from './component/suggestion/add/add';
+import {ErrorComponent} from './component/error/error.component';
 
 /*Providers */
 import { LoggedInGuard } from './component/login/login.gaurd';
@@ -116,6 +114,7 @@ import {SuggestionService} from './providers/suggestion.service';
     SuggestionForMe,
     SuggestionForStudent,
     SuggestionAddComponent,
+    ErrorComponent,
   ],
   providers: [
     LoggedInGuard,
