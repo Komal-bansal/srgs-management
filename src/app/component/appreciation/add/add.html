@@ -6,11 +6,14 @@
     </button>
   </div>
   <div class="panel-body">
+    <div class="row text-center">
+      <loader [condition]="loader"></loader>
+    </div>
     <form name="appreciation" [formGroup]="appreciation" (ngSubmit)="submitAppreciation()" novalidate>
       <div class="form-group">
         <label for="standardId">Select Year</label>
         <select class="form-control" id="standardId" name="standardId" formControlName="standardId" (ngModelChange)="selectStandards($event)">
-          <option *ngIf="standards==null">No standards sre added yet.</option>
+          <option *ngIf="emptyStandards" disabled>No standards are added yet. Try again later.</option>
           <option *ngFor="let a of standards" [ngValue]="a.id"> {{a.name}}</option>
         </select>
        <div [hidden]="appreciation.controls.standardId.valid || appreciation.controls.standardId.untouched " class="alert alert-warning">This field is required</div> 
@@ -19,6 +22,7 @@
       <div class="form-group" *ngIf="appreciation.value.standardId">
         <label for="studentId">Student Name</label>
         <select class="form-control" formControlName="studentId" name="studentId">
+          <option *ngIf="emptyStudents" disabled>No students are added yet. Try again later.</option>
             <option *ngFor="let s of students" [ngValue]="s.id">{{s.name}}</option>
           </select>
       <div>
@@ -57,7 +61,7 @@
         You have successfully added a new appreciation
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" [routerLink]="['/suggestion/for-student']">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" [routerLink]="['/appreciation/for-student']">Close</button>
         <button type="button" class="btn btn-primary" data-dismiss="modal">Add More</button>
       </div>
     </div>

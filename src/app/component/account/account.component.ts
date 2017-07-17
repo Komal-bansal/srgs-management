@@ -61,12 +61,13 @@ export class AccountComponent implements OnInit {
 
     public submitAccountDetails(details: any) {
         this.loader = true;
-
+        console.log()
         let formData = new FormData();
         formData.append('file', this.imgFile);
         this.au.uploadImage(formData).subscribe((res: any) => {
             localStorage.setItem('picUrl', localStorage.getItem('fileUrl') + "/" + res.fileTimestamp);
             $('#myModal').modal('hide');
+            this.uploadPicForm.reset();
             this.loader = false;
         },
             err => {
