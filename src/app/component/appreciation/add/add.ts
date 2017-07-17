@@ -41,13 +41,7 @@ export class AddAppreciation {
       description: new FormControl('', [Validators.required, Validators.maxLength(2500)]),
       studentId: new FormControl('', [Validators.required]),
       title: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-<<<<<<< HEAD
       standardId: new FormControl('', [Validators.required]),
-
-
-=======
-      // standardId: new FormControl('', [Validators.required]),
->>>>>>> d019de5a097ab95a2a86c9f3544bcffeeb1c1cc0
     });
   }
   submitAppreciation() {
