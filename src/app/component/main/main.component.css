@@ -303,7 +303,7 @@ color: grey;
     display: block;
 }
 
-@media(min-width:768px) {
+@media(min-width:100px) {
     #wrapper {
         padding-left: 0;
     }
@@ -329,6 +329,7 @@ color: grey;
         position: relative;
         margin-right: 0;
     }
+
 }
 
 .sidebar-items{

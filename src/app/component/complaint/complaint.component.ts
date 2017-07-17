@@ -212,7 +212,7 @@ export class ComplaintComponent implements OnInit, AfterViewInit {
       this.complaints[this.selectedIndex] = response;
       $('#myModal3').modal('hide');
     }, error => {
-      this.router.navigate(['/error']);
+this.router.navigate(['/error']);
     });
     this.loader1 = false;
   }
