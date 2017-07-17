@@ -6,6 +6,9 @@
   </button> 
   </div>
    <div class="panel-body">
+     <div class="row text-center">
+      <loader [condition]="loader"></loader>
+    </div>
   <form name="homework" [formGroup]="homework" (ngSubmit)="submitHomework()" novalidate>
     <div class="row text-center">
       <loader [condition]="submitProgress"></loader>
@@ -22,7 +25,7 @@
     <div class="form-group" *ngIf="homework.value.standardId" >
       <label for="subjectId">Select Subject</label>
       <select class="form-control" id="subjectId" name="subjectId" formControlName="subjectId">
-      <option selected [value]="null" *ngIf="emptySubjects">No Subjects are added</option>
+      <option *ngIf="emptySubjects" disabled>No Subjects are added. Try again later.</option>
       <option *ngFor="let bx of subjects" [value]="bx.subjectId">{{bx.subjectName}}</option>
     </select>
     <div>

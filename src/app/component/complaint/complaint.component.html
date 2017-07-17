@@ -38,7 +38,7 @@
         <hr class="style-line">
         <div class="row">
           <div class="col-sm-6 col-xs-6 edit" *ngIf="!(complaintStatus == 4 || complaintStatus == 5)">
-            <a [ngClass]="{'disabled-click' : c.statusId == 4}" (click)="selectComplaint(c,in)" data-toggle="modal" data-target="#myModal"
+            <a [ngClass]="{'disabled-click' : c.statusId == 4}" (click)="selectComplaint(c,i)" data-toggle="modal" data-target="#myModal"
               class="action"><i class="glyphicon glyphicon-pencil"></i>
           </a>
           </div>

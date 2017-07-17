@@ -1,43 +1,42 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeworkService } from '../../../providers/homework.service';
-// import { CustomService } from '../../../providers/custom.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'passed-homework',
-  styleUrls:['./../homework.component.css'],
+  styleUrls: ['./../homework.component.css'],
   templateUrl: './homework.html'
 })
 
 export class PassedHomework implements OnInit {
 
-  public fileUrl : string;
+  public fileUrl: string;
   public title: string = 'Homework';
   public icon: string = "book";
   public EmptyHomeworks = false;
-  public homeworks:any = [];
+  public homeworks: any = [];
   currentPage = 1;
-  loader:boolean = false;
+  loader: boolean = false;
   monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
-  public selectedHomework:any;
+  public selectedHomework: any;
 
   constructor(private homeworkService: HomeworkService,
-              // private nl: CustomService
-              ) {
+    public router: Router,
+  ) {
   }
 
-  ngOnInit() : void {
+  ngOnInit(): void {
     this.fileUrl = localStorage.getItem("fileUrl") + "/";
     this.getHomeworks();
   }
 
   public getHomeworks() {
-    // this.nl.showLoader();
     this.loader = true;
     this.homeworkService.getOldHomework(this.currentPage).subscribe((data) => {
-      console.log(data);
       this.onSuccess(data);
     }, (err) => {
-      // this.nl.hideLoader();
+      this.loader = false;
+      this.router.navigate(['/error']);
     });
   }
 
@@ -53,7 +52,7 @@ export class PassedHomework implements OnInit {
     this.getHomeworks();
   }
 
-  public doRefresh(refresher:any) {
+  public doRefresh(refresher: any) {
     setTimeout(() => {
       this.homeworkService.getOldHomework(1).subscribe((res) => {
         this.onSuccess(res);
@@ -64,8 +63,8 @@ export class PassedHomework implements OnInit {
       });
     }, 500);
   }
-  noMore:boolean = false;
-  public onSuccess(res:any) {
+  noMore: boolean = false;
+  public onSuccess(res: any) {
     // this.nl.hideLoader();
     this.loader = false;
     if (res.status === 204) {
@@ -73,27 +72,28 @@ export class PassedHomework implements OnInit {
     } else {
       this.EmptyHomeworks = false;
       this.homeworks = res;
-      if(this.homeworks.length < 10) this.noMore = true;
+      if (this.homeworks.length < 10) this.noMore = true;
       else this.noMore = false;
-      this.homeworks.forEach((data:any) => {
+      this.homeworks.forEach((data: any) => {
         data.dueMonth = this.monthNames[(new Date(data.dueDate)).getMonth()];
         data.dueDate = ("0" + (new Date(data.dueDate).getDate())).slice(-2);
       });
     }
   }
 
-  public onError(err:any) {
-    // this.nl.onError(err);
+  public onError(err: any) {
+    this.loader = false;
+    this.router.navigate(['/error']);
   }
 
-  public doInfinite(infiniteScroll:any) {
+  public doInfinite(infiniteScroll: any) {
     this.currentPage += 1;
     setTimeout(() => {
       this.loadMoreData(infiniteScroll);
     }, 500);
   }
 
-  public loadMoreData(infiniteScroll:any) {
+  public loadMoreData(infiniteScroll: any) {
     this.homeworkService.getOldHomework(this.currentPage).subscribe((res) => {
       infiniteScroll.complete();
       this.loadDataSuccess(res);
@@ -103,25 +103,26 @@ export class PassedHomework implements OnInit {
     });
   }
 
-  public loadDataSuccess(res:any) {
+  public loadDataSuccess(res: any) {
     if (res.status === 204) {
       this.currentPage -= 1;
       return;
     }
     let newHomework = res;
-    newHomework.forEach((data:any) => {
+    newHomework.forEach((data: any) => {
       data.dueMonth = this.monthNames[(new Date(data.dueDate)).getMonth()];
       data.dueDate = ("0" + (new Date(data.dueDate).getDate())).slice(-2);
     });
     this.homeworks = this.homeworks.concat(newHomework);
   }
 
-  public loadDataError(err:any) {
+  public loadDataError(err: any) {
     this.currentPage -= 1;
-    // this.nl.onError(err);
+    this.loader = false;
+    this.router.navigate(['/error']);
   }
 
-   public seletToExpand(a:any){
+  public seletToExpand(a: any) {
     this.selectedHomework = a;
   }
 
