@@ -18,6 +18,7 @@
         <label for="standardId">Select Year</label>
         <select class="form-control" id="standardId" name="standardId"(ngModelChange)="selectStandards($event)" [(ngModel)]="StandardId"
           [ngModelOptions]="{standalone: true}">
+          <option *ngIf="standards==null">No standards sre added yet.</option>
           <option *ngFor="let a of standards" [ngValue]="a.id"> {{a.name}}</option>
         </select>
       <!-- <div [hidden]="appreciation.controls.standardId.valid || appreciation.controls.standardId.untouched " class="alert alert-warning">This field is required</div> -->

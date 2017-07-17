@@ -8,6 +8,9 @@
   </div>
   <!-- Table -->
   <div class="panel-body">
+     <div class="row text-center">
+      <loader [condition]="loader"></loader>
+    </div>
     <form name="circular" [formGroup]="circular" (ngSubmit)="circularSubmit()" novalidate>
       <div class="form-group">
         <label for="title">Enter Title</label>
@@ -62,7 +65,8 @@
       <div class="form-group" *ngIf="circular.value.circularTypeId == 2 ">
         <label for="standardIds">Select Class</label>
         <select class="form-control" id="standardIds" name="standardIds" [(ngModel)]="standard" (ngModelChange)="selectStandards($event)" [ngModelOptions]="{standalone: true}" multiple>
-          <option *ngFor="let a of standards" [ngValue]="a"> {{a.name}}</option>
+          <option *ngIf="standards == null" disabled>No standards are added to the view. Try again later.</option>
+          <option *ngFor="let a of standards" [ngValue]="a">{{a.name}}</option>
         </select>
         <div>
           <!--<div [hidden]="circular.controls.standard.valid || circular.controls.standard.untouched" class="alert alert-warning">This field is required</div>-->
