@@ -24,7 +24,7 @@
         <div class="row desc" style="text-align:center;">{{s.description}}</div>
 
         <hr class="style-line">
-        <div class="row name" style="text-align:center;"><span class="glyphicon glyphicon-calendar"></span>{{s.expiredAt | date:"dd/MM/yyyy"}}</div>
+        <div class="row name" style="text-align:center;"><span class="glyphicon glyphicon-calendar"></span>{{s.expiredAt | date}}</div>
       </div>
     </div>
 
@@ -36,7 +36,7 @@
   </div>
   <div class="panel-footer">
     <button (click)="previousSurvey()" [disabled]="currentPage === 1" type="button" class="btn btn-primary">Previous</button>
-    <button (click)="nextSurvey()" type="button" [disabled]="EmptySurveys || noMore" class="btn btn-primary">Next</button>
+    <button (click)="nextSurvey()" type="button" [disabled]="emptySurveys || noMore" class="btn btn-primary">Next</button>
   </div>
 </div>
 

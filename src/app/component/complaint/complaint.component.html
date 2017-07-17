@@ -117,7 +117,7 @@
                 <div class="result">{{selectedComplaint.createdAt | date: "shortDate"}}</div>
               </div>
               <div class="col-sm-5 col-xs-5"><label class="heading">Closed On</label>
-                <div class="result" *ngIf="selectedComplaint.closedOn">{{selectedComplaint.closedOn | date: "shortDate"}}</div>
+                <div class="result" *ngIf="selectedComplaint.closedOn">{{selectedComplaint.closedOn | date}}</div>
                 <div *ngIf="!selectedComplaint.closedOn" style="font-weight:700">-</div>
               </div>
 
@@ -256,7 +256,7 @@
     <div *ngFor="let c of comments">
       <div *ngIf="c.employeeId == currentUser">
         <div class="myMsg">
-          <img src="http://www.clker.com/cliparts/f/8/a/6/1376432218623075512little%20girl%20dreaming-hi.png" class="myImg" />
+          <img [attr.src]="fileUrl + c.studentPicUrl" class="myImg" />
           <div class="myText">
             <span class="myText-style">
               {{c.comment}}
@@ -269,7 +269,7 @@
       </div>
       <div *ngIf="c.employeeId != currentUser">
         <div class="msg">
-          <img src="http://www.kpop-map.com/wp-content/uploads/2016/01/sm-rookies-kun-profile.jpg" class="img" />
+          <img [attr.src]="fileUrl + c.studentPicUrl" class="img" />
           <div class="text">
             <span class="text-style">
               {{c.comment}}

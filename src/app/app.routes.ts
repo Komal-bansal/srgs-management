@@ -40,7 +40,7 @@ import { ErrorComponent } from './component/error/error.component';
 
 export const rootRouterConfig: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [LoggedInGuard] },
   {
     path: '', component: MainComponent, canActivate: [LoggedInGuard],
     children: [
@@ -112,6 +112,6 @@ export const rootRouterConfig: Routes = [
     ],
 
   },
-  { path: 'error', component: ErrorComponent },
+  { path: 'error', component: ErrorComponent, canActivate: [LoggedInGuard]  },
   { path: '**', redirectTo: '/error' },
 ];

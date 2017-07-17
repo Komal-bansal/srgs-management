@@ -17,6 +17,11 @@ export class Configuration {
   public baseUrl: string = "http://nxtlife-testing.ind-cloud.everdata.com/";
   public Server: string = "http://nxtlife-testing.ind-cloud.everdata.com/";
 
+  
+  // public url: string = "https://yugma-demo.ind-cloud.everdata.com";
+  // public baseUrl: string = "https://yugma-demo.ind-cloud.everdata.com/";
+  // public Server: string = "https://yugma-demo.ind-cloud.everdata.com/";
+
   userId: any;
   access_token: string;
   role: string;

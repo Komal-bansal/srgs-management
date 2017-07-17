@@ -33,6 +33,7 @@ export class CurrentHomework implements OnInit {
     this.loader = true;
     this.homeworkService.getHomework(this.currentPage).subscribe((data) => {
       this.onSuccess(data);
+      console.log(data);
     }, (err) => {
       this.loader = false;
       this.router.navigate(['/error']);

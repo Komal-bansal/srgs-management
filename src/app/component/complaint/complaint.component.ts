@@ -172,7 +172,7 @@ export class ComplaintComponent implements OnInit, AfterViewInit {
     if (this.editForm.value['statusId'])
       this.editForm.value['statusId'] = 3;
     else {
-    this.loader1 = true;
+      this.loader1 = true;
       delete this.editForm.value['statusId'];
     }
     // if(this.editForm.value['assignedTo'] == this.selectedComplaint.assignedEmployeeId)
@@ -212,7 +212,7 @@ export class ComplaintComponent implements OnInit, AfterViewInit {
       this.complaints[this.selectedIndex] = response;
       $('#myModal3').modal('hide');
     }, error => {
-this.router.navigate(['/error']);
+      this.router.navigate(['/error']);
     });
     this.loader1 = false;
   }
@@ -309,6 +309,7 @@ this.router.navigate(['/error']);
         }
         this.EmptyComments = false;
         this.comments = res;
+        console.log("comments",res);
         this.count = this.comments.length;
       }, (err) => {
         delete this.comments;
