@@ -18,7 +18,7 @@ export class ComplaintComponent implements OnInit, AfterViewInit {
   public priorities: any;
   public comments: any;
   public commentForm: FormGroup;
-  public EmptyComments: any;
+  public EmptyComments: boolean = false;
   public complaintStatus: any;
   public complaintCategory: any;
   public complaintsCOPY: any;
@@ -29,12 +29,12 @@ export class ComplaintComponent implements OnInit, AfterViewInit {
   public emptySearchResult: boolean = false;
   public complaint = {
     title: ""
-  } 
+  }
   public fileUrl: string;
-  
+
   public url: string = "";
   public status: string = "";
-  public count:any=0;
+  public count: any = 0;
   constructor(public cs: ComplaintService,
     public router: Router,
     public route: ActivatedRoute, ) {
@@ -54,8 +54,8 @@ export class ComplaintComponent implements OnInit, AfterViewInit {
     }
   }
 
-  ngOnInit() { 
-    this.fileUrl = localStorage.getItem("fileUrl") + "/";    
+  ngOnInit() {
+    this.fileUrl = localStorage.getItem("fileUrl") + "/";
     this.fetchComplaints();
     this.getEditInfo();
     this.loadForm();
@@ -76,6 +76,7 @@ export class ComplaintComponent implements OnInit, AfterViewInit {
       error => {
         this.employees = [];
         this.priorities = [];
+        this.router.navigate(['/error']);
       })
   }
 
@@ -112,13 +113,14 @@ export class ComplaintComponent implements OnInit, AfterViewInit {
   public fetchComplaints() {
     this.loader = true;
     this.cs.getComplaint(this.url, this.currentPage).subscribe((res) => {
-      console.log(res);
+
       this.onSuccess(res);
     }, (err) => {
       this.onError(err);
     });
   }
   public noMore: boolean = false;
+
   public onSuccess(res: any) {
     this.loader = false;
     if (res.status !== 204) {
@@ -134,26 +136,35 @@ export class ComplaintComponent implements OnInit, AfterViewInit {
 
   public onError(err: any) {
     this.complaints = [];
+    this.router.navigate(['/error']);
   }
 
   public selectedComplaint: any;
   public selectedIndex: any;
+
   public selectComplaint(complaint: any, index: any) {
     this.selectedComplaint = complaint;
     this.selectedIndex = index;
     this.loadFormValue();
+   
   }
 
-  public seletToExpand(c:any){
+  public seletToExpand(c: any, i:any) {
     this.selectedComplaint = c;
+    this.selectedIndex = i;
     this.cs.getComplaintCommentById(this.url, c.id).subscribe((res) => {
-        this.EmptyComments = false;
-        this.comments = res;
-        this.count=this.comments.length;
-        console.log(this.comments.length);
+      if (res.status === 204) {
+        this.EmptyComments = true;
+        this.comments = [];
+        this.count = 0;
+        return;
+      }
+      this.EmptyComments = false;
+      this.comments = res;
+      this.count = this.comments.length;
     }, (err) => {
       delete this.comments;
-      this.cs.showToast("Internal server error.. Try again later");
+      this.router.navigate(['/error']);
     });
   }
 
@@ -169,21 +180,26 @@ export class ComplaintComponent implements OnInit, AfterViewInit {
     //   delete this.editForm.value['priorityId'];
     this.cs.updateComplaint(this.selectedComplaint.id, this.editForm.value,this.url).subscribe(response => {
       this.complaints[this.selectedIndex] = response;
+      
       this.loader1 = false;
       $('#myModal').modal('hide');
     }, error => {
-    })
+      this.loader = false;
+       this.router.navigate(['/error']);
+    });
+    console.log("updated",this.complaints);
   }
 
   public loadForm() {
     this.editForm = new FormGroup({
       assignedTo: new FormControl(''),
       priorityId: new FormControl(''),
-       statusId: new FormControl('')
+      statusId: new FormControl('')
     })
   }
 
   public loadFormValue() {
+    
     this.editForm.patchValue({ "assignedTo": this.selectedComplaint.assignedEmployeeId });
     this.editForm.patchValue({ "priorityId": this.selectedComplaint.priorityId });
   }
@@ -220,43 +236,32 @@ export class ComplaintComponent implements OnInit, AfterViewInit {
     this.loadFormValue();
   }
 
-  public searchComplaints(ev: any) {
-    let val: any = ev.target.value;
-    if (val && val.trim() != '') {
-      this.loader = true;
-      this.emptySearchResult = false;
-      this.cs.searchComplaints(this.currentPage, { "search": val }).subscribe((res: any) => {
-        this.loader = false;
-        this.complaints = res;
-        if (res.status == 204) {
-          this.complaints = [];
-          this.loader = false;
-          this.emptySearchResult = true;
-        }
-      },
-        (error: any) => {
-          this.loader = false;
-          
-        })
-
-
-
-    }
-    else {
-      this.emptySearchResult = false;
-      this.complaints = this.complaintsCOPY;
-    }
-
-  }
-
   // public searchComplaints(ev: any) {
-  //   this.loadComplaints();
-  //   let val = ev.target.value;
+  //   let val: any = ev.target.value;
   //   if (val && val.trim() != '') {
-  //     this.complaints = this.complaintsCOPY.filter((item) => {
-  //       return (item.title.toLowerCase().indexOf(val.toLowerCase()) > -1);
-  //     });
-  //  }
+  //     this.loader = true;
+  //     this.emptySearchResult = false;
+      
+  //     this.cs.searchComplaints(this.currentPage, { "search": val }).subscribe((res: any) => {
+  //       if (res.status == 204) {
+  //         this.complaints = [];
+  //         this.loader = false;
+  //         this.emptySearchResult = true;
+  //         return;
+  //       }
+  //       this.loader = false;
+  //        console.log('res')
+  //     },
+  //       (error: any) => {
+  //         this.loader = false;
+  //         console.log("err",error);
+  //       })
+  //   }
+  //   else {
+  //     this.emptySearchResult = false;
+  //     this.complaints = this.complaintsCOPY;
+  //   }
+
   // }
 
   public complaintIdOfCommentModel: any;
@@ -265,28 +270,71 @@ export class ComplaintComponent implements OnInit, AfterViewInit {
   currentUser = this.cs.getUserId();
 
   getComplaintCommentById(complaint: any) {
-    // console.log("count",this.count);
-    if (complaint.closedOn || complaint.statusId == 6) this.closedOn = true;
-    this.complaintIdOfCommentModel = complaint.id;
+    if (complaint == undefined) {
+      this.cs.getComplaintCommentById(this.url,this.selectedComplaint.id).subscribe((res) => {
+        if (res.status === 204) {
+          this.EmptyComments = true;
+          this.comments = [];
+          this.count = 0;
+          return;
+        }
+        this.EmptyComments = false;
+        this.comments = res;
+        this.count = this.comments.length;
+      }, (err) => {
+        delete this.comments;
+        this.router.navigate(['/error']);
+      });
+      if (this.selectedComplaint.closedOn || this.selectedComplaint.statusId == 6) this.closedOn = true;
+      this.complaintIdOfCommentModel = this.selectedComplaint.id;
 
-    this.complaints.forEach((element: any) => {
-      if (element['id'] == complaint.id)
-        this.complaintTitleOfCommentModel = element.title;
-    });
+      this.complaints.forEach((element: any) => {
+        if (element['id'] == this.selectedComplaint.id)
+          this.complaintTitleOfCommentModel = element.title;
+      });
 
-    
+
+    }
+    else {
+
+      this.cs.getComplaintCommentById(this.url, complaint.id).subscribe((res) => {
+        if (res.status === 204) {
+          this.EmptyComments = true;
+          this.comments = [];
+          this.count = 0;
+          return;
+        }
+        this.EmptyComments = false;
+        this.comments = res;
+        this.count = this.comments.length;
+      }, (err) => {
+        delete this.comments;
+       this.router.navigate(['/error']);
+      });
+      if (complaint.closedOn || complaint.statusId == 6) 
+      { this.closedOn = true; }
+      else { this.closedOn = false;}
+      this.complaintIdOfCommentModel = complaint.id;
+
+      this.complaints.forEach((element: any) => {
+        if (element['id'] == complaint.id)
+          this.complaintTitleOfCommentModel = element.title;
+      });
+
+    }
   }
 
   public submitComment() {
+    this.EmptyComments = false;
     if (this.commentForm.value['comment'])
-      this.cs.postComplaintComment(this.complaintIdOfCommentModel, this.commentForm.value,this.url).subscribe((res) => {
+      this.cs.postComplaintComment(this.complaintIdOfCommentModel, this.commentForm.value, this.url).subscribe((res) => {
         this.commentForm.value['employeeId'] = this.currentUser;
         this.commentForm.value['createdAt'] = new Date();
         this.comments.push(this.commentForm.value);
-       
+
         this.commentForm.reset();
       }, (err) => {
-        this.cs.showToast("Internal server error.. Try again later");
+        this.router.navigate(['/error']);
       });
   }
 

@@ -21,12 +21,15 @@ export class AddAppreciation {
   public standardId: any;
   students: any = [];
   subjects: any = [];
+  public emptyStudents: boolean = true;
+  public emptyStandards: boolean = true;
+  public loader:boolean = false;
+
   constructor(private appreciationService: AppreciationService,
     private commonService: CommonService,
     public router: Router,
   ) {
     this.getStandards();
-    // this.getStudents(a);
   }
 
   ngOnInit() {
@@ -39,37 +42,44 @@ export class AddAppreciation {
       studentId: new FormControl('', [Validators.required]),
       title: new FormControl('', [Validators.required, Validators.maxLength(50)]),
       // standardId: new FormControl('', [Validators.required]),
-
-
     });
   }
   submitAppreciation() {
+    this.loader = true;
     // this.submitProgress = true;
     this.appreciationService.postAppreciation(this.appreciation.value).subscribe((res) => {
+        this.loader = false;
       // this.submitProgress = false;
       this.initForm();
       $('#appreciationModal').modal('show');
     }, (err) => {
+      this.loader = false;
       this.router.navigate(['/error']);
 
     });
   }
   public getStandards() {
     // this.nl.showLoader();
+    this.loader = true;
     this.appreciationService.getStandards().subscribe((res) => {
       if (res.status === 204) {
-        this.standards = null;
+        this.standards = [];
+        this.emptyStandards = true;
+        this.loader = false;
         return;
       }
       this.standards = res;
-      console.log(this.standards.standardId);
+      this.emptyStandards = false;
+      this.loader = false;
     }, (err) => {
+      this.loader = false;
       this.router.navigate(['/error']);
     });
   }
 
 
   selectStandards(stan: any) {
+    this.standardId = []
     this.standardId = stan;
     this.getStudents();
   }
@@ -77,6 +87,12 @@ export class AddAppreciation {
   public getStudents() {
     // this.nl.showLoader();
     this.appreciationService.getStudents(this.standardId).subscribe((res) => {
+      if(res.status===204){
+        this.students = [];
+        this.emptyStudents = true;
+        return;
+      }
+      this.emptyStudents = false;
       this.students = res;
     }, (err) => {
       this.router.navigate(['/error']);

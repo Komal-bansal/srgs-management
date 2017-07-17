@@ -67,6 +67,7 @@ main{
 }
 .profile-card{
     z-index:100;
+    outline: transparent;
     position: absolute;
     top: 58px;
     right: 7px;

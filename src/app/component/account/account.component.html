@@ -47,7 +47,7 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Update Profile Picture </h4>
       </div>
-      <form [formGroup]="uploadPicForm" (submit)="submitAccountDetails(d)">
+      <form [formGroup]="uploadPicForm">
         <div class="modal-body">
           <div class="row text-center">
             <loader [condition]="loader"></loader>
@@ -57,7 +57,7 @@
       </div>
         </div>
         <div class="modal-footer">
-          <button type="Submit" class="btn btn-default">Submit</button>
+          <button type="button" (click)="submitAccountDetails(d)" class="btn btn-default" data-dismiss= 'modal'>Submit</button>
         </div>
       </form>
 

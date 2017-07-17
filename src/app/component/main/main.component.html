@@ -31,7 +31,7 @@
       </div>
     </nav>
 <!-- header end-->
-  <div class="profile-card" [hidden]="displayProfile">
+  <div class="profile-card" [hidden]="displayProfile" tabindex= '1' (blur)="displayProfile=true">
     <div class="row">
       <div class="col-sm-4 col-xs-4">
         <img class="profile-card-pic" src="{{log.getData('picUrl')}}" *ngIf="log.getData('picUrl')">
@@ -56,7 +56,7 @@
     </div>
     <div class="row profile-card-footer">
       <div class="col-sm-6 col-xs-6">
-        <a [routerLink]="['/account']" class="btn btn-default" style="color: #333">Account</a>
+        <a [routerLink]="['/account']" class="btn btn-default" style="color: #333" (click) = "displayProfile=true">Account</a>
       </div>
       <div class="col-sm-6 col-xs-6" routerLinkActive="active" data-toggle="modal" data-target=".bs-example-modal-sm">
         <a class="btn btn-default custom-buttons" routerLinkActive="active" style="color: #333">Logout</a>
