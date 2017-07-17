@@ -55,10 +55,10 @@
       </div>
     </div>
     <div class="row profile-card-footer">
-      <div class="col-sm-6 col-xs-6" routerLinkActive="active">
+      <div class="col-sm-6 col-xs-6">
         <a [routerLink]="['/account']" class="btn btn-default" style="color: #333">Account</a>
       </div>
-      <div class="col-sm-6 col-xs-6" data-toggle="modal" data-target=".bs-example-modal-sm">
+      <div class="col-sm-6 col-xs-6" routerLinkActive="active" data-toggle="modal" data-target=".bs-example-modal-sm">
         <a class="btn btn-default custom-buttons" routerLinkActive="active" style="color: #333">Logout</a>
       </div>
     </div>
@@ -84,11 +84,16 @@
           <img class="sidebar-icon" src="{{page.icon}}"> {{page.title}}
         </a>
       </li>
-      <!-- <li class="sidebar-items" data-toggle="modal" data-target=".bs-example-modal-sm">
+      <li class="sidebar-items">
+        <a [routerLink]="['/account']" routerLinkActive="active">
+          <img  class="sidebar-icon" src="./icons/profile.png">  Profile
+        </a>
+      </li>
+       <li class="sidebar-items" data-toggle="modal" data-target=".bs-example-modal-sm">
         <a href="#" routerLinkActive="active">
           <img class="sidebar-icon" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-9/256/Logout-icon.png">          Logout
         </a>
-      </li> -->
+      </li> 
     </ul>
   </div>
     <a class="nav-btn" id="menu-toggle"><i class="glyphicon glyphicon-menu-hamburger"></i></a>

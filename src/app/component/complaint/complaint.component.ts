@@ -157,7 +157,7 @@ export class ComplaintComponent implements OnInit, AfterViewInit {
     //   delete this.editForm.value['assignedTo'];
     // if(this.editForm.value['priorityId'] == this.selectedComplaint.priorityId)
     //   delete this.editForm.value['priorityId'];
-    this.cs.updateComplaint(this.selectedComplaint.id, this.editForm.value).subscribe(response => {
+    this.cs.updateComplaint(this.selectedComplaint.id, this.editForm.value,this.url).subscribe(response => {
       this.complaints[this.selectedIndex] = response;
       this.loader1 = false;
       $('#myModal').modal('hide');
@@ -180,7 +180,7 @@ export class ComplaintComponent implements OnInit, AfterViewInit {
 
   public closeComplaint() {
     this.loader1=true;
-    this.cs.closeComplaint(this.selectedComplaint.id, this.closeForm.value).subscribe(response => {
+    this.cs.closeComplaint(this.selectedComplaint.id, this.closeForm.value,this.url).subscribe(response => {
       this.complaints[this.selectedIndex] = response;
       $('#myModal3').modal('hide');
     }, error => {
@@ -265,6 +265,7 @@ export class ComplaintComponent implements OnInit, AfterViewInit {
     this.cs.getComplaintCommentById(this.url, complaint.id).subscribe((res) => {
         this.EmptyComments = false;
         this.comments = res;
+        console.log(this.comments);
     }, (err) => {
       delete this.comments;
       this.cs.showToast("Internal server error.. Try again later");
@@ -273,7 +274,7 @@ export class ComplaintComponent implements OnInit, AfterViewInit {
 
   public submitComment() {
     if (this.commentForm.value['comment'])
-      this.cs.postComplaintComment(this.complaintIdOfCommentModel, this.commentForm.value).subscribe((res) => {
+      this.cs.postComplaintComment(this.complaintIdOfCommentModel, this.commentForm.value,this.url).subscribe((res) => {
         this.commentForm.value['employeeId'] = this.currentUser;
         this.commentForm.value['createdAt'] = new Date();
         this.comments.push(this.commentForm.value);

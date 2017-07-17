@@ -16,20 +16,24 @@
   <div style="margin-top: 2%;padding-top: 1%;">
     <div class="container card" *ngFor="let c of complaints; let i = index;">
       <div class="row">
+        <div class="col-sm-6 col-xs-6" *ngIf="!complaintStatus" style="margin: -8px -24px;">
+          <span [style.background]="c.statusColor" class="badge">@{{c.statusName}}</span>
+        </div>
         <span class="glyphicon glyphicon-resize-full expand" (click)="seletToExpand(c)" data-toggle="modal" data-target="#myModal-card"></span>
       </div>
-      <!--<div class="row">
+      <!-- <div class="row">
         <div class="col-sm-6" *ngIf="!complaintStatus">
-          <span [style.background]="c.statusColor" class="badge">{{c.statusName}}</span>
+          <span [style.background]="c.statusColor" class="badge">@{{c.statusName}}</span>
         </div>
-        <div class="col-sm-6">{{c.priorityName}}</div>
-      </div>-->
+        <div class="col-sm-6" class="badge">{{c.priorityName}}</div>
+      </div> -->
       <div class="row">
         <img class="image" [attr.src]="fileUrl + c.studentPicUrl">
       </div>
       <div class="row name">{{c.studentName}}</div>
       <div class="row class">{{c.studentStandardName}}</div><hr class="style-line">
-      <div class="row title">{{c.title}}</div><hr class="style-line">
+      <div class="row title">{{c.title}}</div>
+      <div class="row description">{{c.description}}</div><hr class="style-line">
       <div class="row">
         <div class="col-sm-6 col-xs-6 edit" *ngIf="!(complaintStatus == 4 || complaintStatus == 5)">
           <a [ngClass]="{'disabled-click' : c.statusId == 4}" (click)="selectComplaint(c,in)" data-toggle="modal" data-target="#myModal"
@@ -54,7 +58,7 @@
       <div class="modal-body card-modal" >
         <div class="row first-row">
           <div class="col-sm-6">
-              <div class="badge">{{selectedComplaint.statusName}}</div>
+              <div class="badge"[ngStyle]="{'backgroundColor': selectedComplaint.statusColor}">@{{selectedComplaint.statusName}}</div>
           </div>
           <div class="col-sm-6">
           <div class="row badge" *ngIf="selectedComplaint.assignedEmployeeName"><span class="empName">@{{selectedComplaint.assignedEmployeeName}}</span></div>
@@ -62,12 +66,10 @@
         </div>
         <div class="row modal-heading">
           <div class="col-sm-4 coloumn-middle">
-            <div class="align-middle">
-          <!--<div class="col-sm-4 col-xs-4 complaint-modal-head">
-            <div class="middle-title">-->
+            <!-- <div class="align-middle">
               <div class="big-fonts">4</div>
               <label class="heading">Comments</label>
-            </div>
+            </div> -->
           </div>
 
           
@@ -119,7 +121,7 @@
             <button onclick="$('.panel.panel-chat').show();"  (click)="getComplaintCommentById(c)" class="btn btn-primary modal-btn" data-dismiss="modal" >Comment<i class="glyphicon glyphicon-comment icon"></i></button>
           </div>
           <div class="col-sm-4 col-xs-4">
-            <button type="button" class="btn btn-primary modal-btn" data-dismiss="modal">Close<i class="glyphicon glyphicon-remove icon"></i></button>
+            <button type="button" class="btn btn-primary modal-btn" [disabled]="selectedComplaint.closedOn" data-target="#myModal3" data-toggle="modal" data-dismiss="modal">Close<i class="glyphicon glyphicon-remove icon"></i></button>
           </div>
         </div>
       </div>
@@ -210,10 +212,23 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="Submit" [disabled]= "closeForm.invalid" class="btn btn-default">Submit</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="Submit" [disabled]= "closeForm.invalid" class="btn btn-default" data-toggle="modal" data-target="#myModal4" data-dismiss="modal">Submit</button>
+          <button type="button" class="btn btn-default"  >Close</button>
         </div>
       </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myModal4" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        Close Complaint
+      </div>
+      <div class="modal-body">
+        <h4 class=""> You have successfully closed the complaint</h4>
+      </div>
     </div>
   </div>
 </div>
@@ -228,7 +243,7 @@
     <div class="clearFix"></div>
   </div>
   <div class="panel-body">
-      <div *ngIf="EmptyComments" style="text-align:center;">No Comments to display</div>
+      <!-- <div *ngIf="EmptyComments" style="text-align:center;">No Comments to display</div> -->
     <div class="row text-center">
       <loader [condition]="loader"></loader>
     </div>
