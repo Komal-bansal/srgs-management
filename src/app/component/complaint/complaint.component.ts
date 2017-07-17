@@ -150,7 +150,7 @@ export class ComplaintComponent implements OnInit, AfterViewInit {
         this.EmptyComments = false;
         this.comments = res;
         this.count=this.comments.length;
-        console.log(this.comments.length);
+        console.log(this.comments);
     }, (err) => {
       delete this.comments;
       this.cs.showToast("Internal server error.. Try again later");

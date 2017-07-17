@@ -35,7 +35,7 @@ import { Location } from '@angular/common';
       description: new FormControl('', [Validators.required,Validators.maxLength(2500)]),
       studentId: new FormControl('', [Validators.required]),
       title: new FormControl('', [Validators.required,Validators.maxLength(50)]),
-            // standardId: new FormControl('', [Validators.required]),
+            standardId: new FormControl('', [Validators.required]),
       
 
     });

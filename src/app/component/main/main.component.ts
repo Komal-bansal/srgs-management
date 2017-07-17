@@ -34,12 +34,12 @@ export class MainComponent implements OnInit, AfterViewInit {
   public pages = [
     { title: 'Dashboard', component: DashboardComponent, icon: 'icons/dashboard.png', url: '/dashboard' },
     { title: 'Complaints', component: ComplaintComponent, icon: 'icons/complaint.png', url: '/complaint' },
-    { title: 'Suggestion', component: SuggestionComponent, icon: 'icons/suggestion.png', url: '/suggestion/for-me'} ,
-    { title: 'Appreciation', component: AppreciationComponent, icon: 'icons/appreciation.png', url: '/appreciation/for-me' },
-    { title: 'Poll', component: PollComponent, icon: 'icons/poll.png', url: '/poll/current-poll' },
-    { title: 'Survey', component: SurveyComponent, icon: 'icons/survey.png', url: '/survey/current-survey' },
+    { title: 'Suggestion', component: SuggestionComponent, icon: 'icons/suggestion.png', url: '/suggestion'} ,
+    { title: 'Appreciation', component: AppreciationComponent, icon: 'icons/appreciation.png', url: '/appreciation' },
+    { title: 'Poll', component: PollComponent, icon: 'icons/poll.png', url: '/poll' },
+    { title: 'Survey', component: SurveyComponent, icon: 'icons/survey.png', url: '/survey' },
     { title: 'Circular', component: CircularComponent, icon: 'icons/circular.png', url: '/circular' },
-    { title: 'Homework', component: HomeworkComponent, icon: 'icons/homework.png', url: '/homework/current-homework' },
+    { title: 'Homework', component: HomeworkComponent, icon: 'icons/homework.png', url: '/homework' },
     this.classTeacher = { title: 'Student Rating', component: StudentRatingComponent, icon: 'icons/rating.png', url: '/student-profile' },
     
     // { title: 'Profile', component: AccountComponent, icon: 'icons/profile.png', url: '/account'},      

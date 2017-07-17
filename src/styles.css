@@ -316,6 +316,10 @@ hr.style-line {
     opacity:1;
     font-weight: 300;
 }
-.glyphicon-calendar:before{
+/* .glyphicon-calendar:before{
     font-size: 30px;
+} */
+
+.modal-description{
+    text-align: left;
 }

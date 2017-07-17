@@ -10,23 +10,23 @@
         
         <div class="form-group">
           <label for="standardId">Select Year</label>
-          <select class="form-control" id="standardId" name="standardId" (ngModelChange)="selectStandards($event)" [(ngModel)]="StandardId" [ngModelOptions]="{standalone: true}">
+          <select class="form-control" id="standardId" name="standardId" formControlName="standardId" (ngModelChange)="selectStandards($event)">
           <option *ngFor="let a of standards" [ngValue]="a.id"> {{a.name}}</option>
         </select>
-          <!-- <div [hidden]="suggestion.controls.standardId.valid || suggestion.controls.standardId.untouched" class="alert alert-warning">This field is required</div>  -->
+           <div [hidden]="suggestion.controls.standardId.valid || suggestion.controls.standardId.untouched" class="alert alert-warning">This field is required</div>  
         </div>
 
-         <div class="form-group">       
+         <div class="form-group" *ngIf="suggestion.value.standardId">       
           <label for="studentId">Student Name</label>
          <select class="form-control" formControlName="studentId" >
             <option *ngFor="let s of students" [ngValue]="s.id">{{s.name}}</option>
           </select>
-        <!-- <div [hidden]="suggestion.controls.studentId.valid || suggestion.controls.studentId.untouched" class="alert alert-warning">This field is required</div>   -->
+         <div [hidden]="suggestion.controls.studentId.valid || suggestion.controls.studentId.untouched" class="alert alert-warning">This field is required</div>   
         
         </div>
 
         <div class="form-group">
-      <label for="standardId">title</label>
+      <label for="title">title</label>
           <span class="badge">{{50 - suggestion.value.title.length}}</span>
               <textarea class="form-control" name="title" formControlName="title" maxlength="50" rows="1"></textarea>
                     <div [hidden]="suggestion.controls.title.untouched  ||suggestion.controls.title.valid ||suggestion.controls.title.prestine" class="alert alert-warning">This field is required</div>
