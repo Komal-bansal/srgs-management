@@ -34,12 +34,12 @@ export class DashboardComponent {
      
     });
     
-    // cs.getSuggestionByStatus().subscribe((res) => {
-    //   this.responseSuggestionByStatus = res;
-    //   this.chartBySuggestionStatus();
-    // }, (err) => {
-    //   console.log(err);
-    // });
+    cs.getSuggestionByStatus().subscribe((res) => {
+      this.responseSuggestionByStatus = res;
+      this.chartBySuggestionStatus();
+    }, (err) => {
+      console.log(err);
+    });
   }
 
   onSelected(data: any) {

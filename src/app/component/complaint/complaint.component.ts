@@ -34,6 +34,7 @@ export class ComplaintComponent implements OnInit, AfterViewInit {
   
   public url: string = "";
   public status: string = "";
+  public count:any=0;
   constructor(public cs: ComplaintService,
     public router: Router,
     public route: ActivatedRoute, ) {
@@ -145,6 +146,15 @@ export class ComplaintComponent implements OnInit, AfterViewInit {
 
   public seletToExpand(c:any){
     this.selectedComplaint = c;
+    this.cs.getComplaintCommentById(this.url, c.id).subscribe((res) => {
+        this.EmptyComments = false;
+        this.comments = res;
+        this.count=this.comments.length;
+        console.log(this.comments.length);
+    }, (err) => {
+      delete this.comments;
+      this.cs.showToast("Internal server error.. Try again later");
+    });
   }
 
   public updateComplaint() {
@@ -253,7 +263,9 @@ export class ComplaintComponent implements OnInit, AfterViewInit {
   public complaintTitleOfCommentModel: any;
   public closedOn: boolean = false;
   currentUser = this.cs.getUserId();
+
   getComplaintCommentById(complaint: any) {
+    // console.log("count",this.count);
     if (complaint.closedOn || complaint.statusId == 6) this.closedOn = true;
     this.complaintIdOfCommentModel = complaint.id;
 
@@ -262,14 +274,7 @@ export class ComplaintComponent implements OnInit, AfterViewInit {
         this.complaintTitleOfCommentModel = element.title;
     });
 
-    this.cs.getComplaintCommentById(this.url, complaint.id).subscribe((res) => {
-        this.EmptyComments = false;
-        this.comments = res;
-        console.log(this.comments);
-    }, (err) => {
-      delete this.comments;
-      this.cs.showToast("Internal server error.. Try again later");
-    });
+    
   }
 
   public submitComment() {
