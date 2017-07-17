@@ -4,6 +4,7 @@ import { AdminService } from '../../providers/admin.service';
 import { HomeworkService } from '../../providers/homework.service'
 import { ValidationService } from '../../providers/formValidation.service';
 import { AuthService } from '../../providers/auth.service';
+import { Router } from '@angular/router';
 
 declare let $: any;
 
@@ -18,18 +19,19 @@ export class AddEmployeeComponent implements OnInit {
   public subjects: any = [[]];
   public imgFile: any;
   public newEmpId: any;
-  public loader:boolean = false;
-  public userNameValid:boolean;
-  public emailValid:boolean;
-  public passwordValid:boolean;
-  public contactValid:boolean;
+  public loader: boolean = false;
+  public userNameValid: boolean;
+  public emailValid: boolean;
+  public passwordValid: boolean;
+  public contactValid: boolean;
   public profilePic: any = "https://cdn.pixabay.com/photo/2017/01/06/19/15/soap-bubble-1958650_960_720.jpg";
   public addEmployeeForm = this.fb.group({
   })
   constructor(public as: AdminService,
     public au: AuthService,
     public hs: HomeworkService,
-    public fb: FormBuilder) {
+    public fb: FormBuilder,
+    public router: Router) {
 
   }
 
@@ -50,7 +52,7 @@ export class AddEmployeeComponent implements OnInit {
 
       // ])
     })
-     this.profilePic= "https://cdn.pixabay.com/photo/2017/01/06/19/15/soap-bubble-1958650_960_720.jpg";
+    this.profilePic = "https://cdn.pixabay.com/photo/2017/01/06/19/15/soap-bubble-1958650_960_720.jpg";
 
   }
 
@@ -62,9 +64,11 @@ export class AddEmployeeComponent implements OnInit {
       $('#myModal').modal('show');
     },
       err => {
-        if(err == "409 - Bad Request")
+        if (err == "409 - Bad Request")
           $('#errorModal').modal('show');
-        console.log("err", err);
+        else {
+          this.router.navigate(['/error']);
+        }
       })
   }
 
@@ -84,14 +88,10 @@ export class AddEmployeeComponent implements OnInit {
       this.loader = false;
     },
       err => {
-        console.log("err", err);
+        this.loader = false;
+        this.router.navigate(['/error']);
       })
   }
-
-  // restriction(){
-  //   this.focus=true;
-  //   this.blur=false;
-  // }
 }
 
  // getStandards() {

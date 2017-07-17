@@ -24,8 +24,8 @@ export class AccountComponent implements OnInit {
     public url: string = "";
     public newPicTimestamp: any;
     public imgFile: any;
-    public loader:boolean = false;
-   
+    public loader: boolean = false;
+
     constructor(public lg: LoggedInGuard,
         public cs: CommonService,
         public au: AuthService,
@@ -46,7 +46,7 @@ export class AccountComponent implements OnInit {
     }
 
     public loadAccountDetails(details: any) {
-        
+
         this.name = this.lg.getData('name');
         this.nickName = this.lg.getData('nickName');
         this.role = this.lg.getData('role');
@@ -55,20 +55,24 @@ export class AccountComponent implements OnInit {
 
     }
 
-      public getFile(event: any) {
+    public getFile(event: any) {
         this.imgFile = event.srcElement.files[0];
     }
 
     public submitAccountDetails(details: any) {
-         this.loader = true;
+        this.loader = true;
 
         let formData = new FormData();
         formData.append('file', this.imgFile);
         this.au.uploadImage(formData).subscribe((res: any) => {
             localStorage.setItem('picUrl', localStorage.getItem('fileUrl') + "/" + res.fileTimestamp);
             $('#myModal').modal('hide');
-             this.loader = false;
-        })
+            this.loader = false;
+        },
+            err => {
+                this.loader = false;
+                this.router.navigate(['/error']);
+            })
 
     }
 }
