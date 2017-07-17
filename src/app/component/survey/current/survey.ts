@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SurveyService } from '../../../providers/survey.service';
+import { Router } from '@angular/router';
 
 declare let $: any;
 
@@ -17,7 +18,7 @@ export class CurrentSurveyComponent implements OnInit {
   public noMore: boolean = false;
   public loader: boolean = false;
 
-  constructor(public ss: SurveyService) { }
+  constructor(public ss: SurveyService, public router: Router) { }
 
   ngOnInit() {
     this.getSurveys();
@@ -37,8 +38,8 @@ export class CurrentSurveyComponent implements OnInit {
       this.loader = false;
     },
       err => {
-        console.log("err", err);
         this.loader = false;
+        this.router.navigate(['/error']);
       })
   }
 

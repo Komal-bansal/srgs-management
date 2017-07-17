@@ -4,6 +4,7 @@ import { CommonService } from '../../../providers/common.service';
 import { SurveyService } from '../../../providers/survey.service';
 import { ValidationService } from '../../../providers/formValidation.service'
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 declare let $: any;
 
@@ -19,9 +20,6 @@ export class AddSurveyComponent implements OnInit {
   public standards: any[];
   public surveyInfo: any;
   public selectedStandard: any;
-  // public oLimit: number = 5;
-  // public qLimit: number = 5;
-  // public disable: boolean = false;
   public loader: boolean = false;
 
   constructor(public cs: CommonService,
@@ -29,37 +27,46 @@ export class AddSurveyComponent implements OnInit {
     public fb: FormBuilder,
     public vs: ValidationService,
     public _location: Location,
-  ) { }
+    public router: Router,
+  ) {
+
+  }
 
   ngOnInit() {
     this.getSurveyInfo();
-    this.getStandards();
     this.initForm();
+    this.getStandards();
   }
 
   public getStandards() {
     this.loader = true;
     this.cs.getStandards().subscribe(res => {
+       if(res.status == 204){
+        this.standards = null;
+        return;
+      }
       this.standards = res;
       this.loader = false;
     },
       err => {
-        console.log("err", err);
-        this.loader = false;
+         this.loader = false;
+         this.router.navigate(['/error']);
       })
   }
 
   public getSurveyInfo() {
-    this.loader = true;
+     this.loader = true;
     this.cs.getSurveyInfo().subscribe(res => {
+      if(res.status === 204){
+        this.surveyInfo = null;
+        return;
+      }
       this.surveyInfo = res;
       this.loader = false;
-      // this.oLimit = this.surveyInfo.optionLimit;
-      // this.qLimit = this.surveyInfo.questionLimit;
     },
       err => {
-        console.log("err", err);
-        this.loader = false;
+       this.loader = false;
+        this.router.navigate(['/error']);
       })
   }
 
@@ -72,7 +79,7 @@ export class AddSurveyComponent implements OnInit {
       // 'standards': [('')],
       'surveyQuestions': this.fb.array([
         this.initQuestions(),
-      ], Validators.required, Validators.minLength(1)
+      ], Validators.minLength(1)
         // Validators.compose([ Validators.minLength(1), Validators.maxLength(this.qLimit)])
       ),
     })
@@ -89,17 +96,14 @@ export class AddSurveyComponent implements OnInit {
     if (event == "1") {
       this.surveyForm.removeControl("standards");
       this.selectedStandard = [];
-      // this.disable = false;
     }
     else if (event == "2") {
       this.selectedStandard = [];
-      // this.disable = true;
       this.surveyForm.addControl("standards", new FormControl((''), [Validators.required]));
     }
   }
 
   public onStandards(ev: any) {
-    // this.disable = false;
     var stan = ev;
     this.surveyForm.controls['standards'].patchValue(stan);
   }
@@ -111,7 +115,7 @@ export class AddSurveyComponent implements OnInit {
       'choices': this.fb.array([
         this.initOptions(),
         this.initOptions(),
-      ],  Validators.required, Validators.minLength(2),
+      ], Validators.required, Validators.minLength(2),
         // Validators.compose([ Validators.minLength(2), Validators.maxLength(this.oLimit)])
       ),
     })
@@ -146,17 +150,14 @@ export class AddSurveyComponent implements OnInit {
 
   public submitSurvey() {
     this.loader = true;
-    console.log("form value", this.surveyForm.value);
-
     this.ss.saveSurvey(this.surveyForm.value).subscribe(res => {
       this.loader = false;
-      console.log("Survey", res);
       $('#submitModal').modal('show');
       this.initForm();
     },
       err => {
-        console.log("err", err);
         this.loader = false;
+        this.router.navigate(['/error']);
       })
   }
 
@@ -178,3 +179,11 @@ export class AddSurveyComponent implements OnInit {
   //   }
   // }
 }
+
+
+
+
+
+
+
+

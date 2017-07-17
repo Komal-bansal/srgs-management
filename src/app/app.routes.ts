@@ -41,7 +41,6 @@ import { ErrorComponent } from './component/error/error.component';
 export const rootRouterConfig: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-   {path:'error', component: ErrorComponent },
   {
     path: '', component: MainComponent, canActivate: [LoggedInGuard],
     children: [
@@ -84,9 +83,10 @@ export const rootRouterConfig: Routes = [
         path: 'survey', component: SurveyComponent, canActivate: [LoggedInGuard],
         children: [
           {
-            path: 'current-survey', component: CurrentSurveyComponent, canActivate: [LoggedInGuard],},
+            path: 'current-survey', component: CurrentSurveyComponent, canActivate: [LoggedInGuard],
+          },
           { path: 'closed-survey', component: ClosedSurveyComponent, canActivate: [LoggedInGuard] },
-                  ]
+        ]
       },
       { path: 'add-survey', component: AddSurveyComponent, canActivate: [LoggedInGuard] },
       {
@@ -110,6 +110,8 @@ export const rootRouterConfig: Routes = [
       { path: 'suggestion-add', component: SuggestionAddComponent, canActivate: [LoggedInGuard] },
 
     ],
-   
+
   },
+  { path: 'error', component: ErrorComponent },
+  { path: '**', redirectTo: '/error' },
 ];
