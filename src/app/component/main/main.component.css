@@ -63,10 +63,10 @@ main{
 	border-color: rgba(136, 183, 213, 0);
 	border-bottom-color: white;
 	border-width: 10px;
-	margin-left: -1px;
+    margin-left: -1px;
 }
 .profile-card{
-    z-index:100;
+    z-index:10000;
     outline: transparent;
     position: absolute;
     top: 58px;
@@ -176,10 +176,11 @@ color: grey;
   left: auto;
 }
 .logo{
-    width: 67px !important;
+    width: 73px !important;
     height: auto !important;
     position: absolute;
     right: 100px;
+    z-index: 10;
 }
 /* Toggle Styles */
 

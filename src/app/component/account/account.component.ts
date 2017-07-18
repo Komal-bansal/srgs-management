@@ -16,12 +16,12 @@ declare let $: any;
 export class AccountComponent implements OnInit {
     public details: any;
     public uploadPicForm: FormGroup;
-    public name: string = "";
+    public name: any = "";
     public nickName: any;
     public picUrl: any;
     public role: any;
     public email: any;
-    public url: string = "";
+    public url: any = "";
     public newPicTimestamp: any;
     public imgFile: any;
     public loader: boolean = false;

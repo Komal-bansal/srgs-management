@@ -9,6 +9,7 @@ declare let $: any;
 
 @Component({
   selector: 'add-circular',
+  // selector: 'add',
   templateUrl: './add.html'
 })
 export class AddCircular implements OnInit, AfterViewInit {

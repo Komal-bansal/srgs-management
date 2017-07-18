@@ -126,8 +126,8 @@
           <div class="modal-footer">
             <div class="row">
               <div class="col-sm-4 col-xs-4">
-                <button [ngClass]="{'disabled-click' : selectedComplaint.statusId == 4}" data-toggle="modal"
-                  data-target="#myModal" class="btn btn-primary modal-btn " [disabled]="selectedComplaint.closedOn"(click)="selectComplaint(selectedComplaint,selectedIndex)" data-dismiss="modal">Edit<i class="glyphicon glyphicon-pencil icon"></i></button>
+                <button *ngIf="!(complaintStatus == 4 || complaintStatus == 5 || complaint.status == 6)" [ngClass]="{'disabled-click' : selectedComplaint.statusId == 4}" data-toggle="modal"
+                  data-target="#myModal" class="btn btn-primary modal-btn "(click)="selectComplaint(selectedComplaint,selectedIndex)" data-dismiss="modal">Edit<i class="glyphicon glyphicon-pencil icon"></i></button>
               </div>
               <div class="col-sm-4 col-xs-4">
                 <button onclick="$('.panel.panel-chat').show();" (click)="getComplaintCommentById(c)" class="btn btn-primary modal-btn" data-dismiss="modal">Comment<i class="glyphicon glyphicon-comment icon"></i></button>

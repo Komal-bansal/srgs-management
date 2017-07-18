@@ -20,6 +20,8 @@ import { Location } from '@angular/common';
   // subjects:any = [];
   constructor(  private suggestionService:SuggestionService,
                 private commonService:CommonService,
+                private _location: Location,
+
                 ){
   
                   // this.getStudents(a);

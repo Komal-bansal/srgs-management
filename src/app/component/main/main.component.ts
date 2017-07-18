@@ -34,7 +34,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   public pages = [
     { title: 'Dashboard', component: DashboardComponent, icon: 'icons/dashboard.png', url: '/dashboard' },
     { title: 'Complaints', component: ComplaintComponent, icon: 'icons/complaint.png', url: '/complaint' },
-    { title: 'Suggestion', component: SuggestionComponent, icon: 'icons/suggestion.png', url: '/suggestion'} ,
+    { title: 'Suggestion', component: SuggestionComponent, icon: 'icons/suggestion.png', url: '/suggestion/for-me'} ,
     { title: 'Appreciation', component: AppreciationComponent, icon: 'icons/appreciation.png', url: '/appreciation' },
     { title: 'Poll', component: PollComponent, icon: 'icons/poll.png', url: '/poll' },
     { title: 'Survey', component: SurveyComponent, icon: 'icons/survey.png', url: '/survey' },
