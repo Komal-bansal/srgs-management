@@ -55,9 +55,17 @@ export class AccountComponent implements OnInit {
 
     }
 
-    public getFile(event: any) {
-        this.imgFile = event.srcElement.files[0];
+     getFile(event: any) {
+    var blob = event.srcElement.files[0];
+    console.log(blob.type);
+    if(blob.type=="image/png" || blob.type=="image/jpeg" || blob.type=="image/jpg"){
+      this.imgFile = event.srcElement.files[0];
     }
+    else{
+       $('#errorModal').modal('show');
+      this.uploadPicForm.controls.imgFile.reset();
+    }
+  }
 
     public submitAccountDetails(details: any) {
         this.loader = true;

@@ -36,8 +36,17 @@ export class HomeworkAddComponent implements OnInit {
     this.getStandards();
   }
   file: any;
+
   getFile(event: any) {
-    this.file = event.srcElement.files[0];
+    var blob = event.srcElement.files[0];
+    console.log(blob.type);
+    if(blob.type=="image/png" || blob.type=="image/jpeg" || blob.type=="image/jpg"){
+      this.file = event.srcElement.files[0];
+    }
+    else{
+       $('#errorModal').modal('show');
+      this.homework.controls.file.reset();
+    }
   }
 
   onDueDate(e: any) {
@@ -76,16 +85,16 @@ export class HomeworkAddComponent implements OnInit {
     });
   }
 
-  public getStandards() {
-    this.loader = true;
-    this.standards = this.commonService.getData("standards");
-    if (typeof (this.standards) === 'undefined') {
-      this._getStandards();
-    }
-    this.loader = false;
-  }
+  // public getStandards() {
+  //   this.loader = true;
+  //   this.standards = this.commonService.getData("standards");
+  //   if (typeof (this.standards) === 'undefined') {
+  //     this._getStandards();
+  //   }
+  //   this.loader = false;
+  // }
 
-  public _getStandards() {
+  public getStandards() {
     this.loader = true;
     this.homeworkService.getStandards().subscribe((res) => {
       this.standards = res;

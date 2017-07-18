@@ -55,16 +55,16 @@ export class AddCircular implements OnInit, AfterViewInit {
     });
   }
 
-  public getStandards() {
-    this.loader = true;
-    this.standards = this.commonService.getData("standards");
-    if (typeof (this.standards) === 'undefined') {
-      this._getStandards();
-    }
-    this.loader = false;
-  }
+  // public getStandards() {
+  //   this.loader = true;
+  //   this.standards = this.commonService.getData("standards");
+  //   if (typeof (this.standards) === 'undefined') {
+  //     this._getStandards();
+  //   }
+  //   this.loader = false;
+  // }
 
-  public _getStandards() {
+  public getStandards() {
 
     this.loader = true;
     this.circserv.getStandards().subscribe((res) => {
@@ -82,22 +82,23 @@ export class AddCircular implements OnInit, AfterViewInit {
     });
   }
 
-  public getCircularInfo() {
-    this.loader = true;
-    let circularInfo = this.commonService.getData("circularInfo");
-    if (typeof (circularInfo) == "undefined") {
-      this._getCircularInfo();
-      this.loader = false;
-    } else {
-      this.buildCircularData(circularInfo);
-      this.loader = false;
-    }
-  }
+  // public getCircularInfo() {
+  //   this.loader = true;
+  //   let circularInfo = this.commonService.getData("circularInfo");
+  //   if (typeof (circularInfo) == "undefined") {
+  //     this._getCircularInfo();
+  //     this.loader = false;
+  //   } else {
+  //     this.buildCircularData(circularInfo);
+  //     this.loader = false;
+  //   }
+  // }
 
-  public _getCircularInfo() {
+  public getCircularInfo() {
     this.loader = true;
     this.commonService.getCircularInfo().subscribe((res) => {
       this.buildCircularData(res);
+      console.log("cir",res);
       this.commonService.storeData("circularInfo", res);
       this.loader = false;
     }, (err) => {
@@ -108,6 +109,7 @@ export class AddCircular implements OnInit, AfterViewInit {
 
   public buildCircularData(circular: any) {
     this.circularType = circular;
+    // console.log("cir",this.circularType);
   }
 
   public onCircularType(event: any) {
@@ -165,9 +167,15 @@ export class AddCircular implements OnInit, AfterViewInit {
     });
   }
 
-  getFile(event: any) {
-    this.file = event.srcElement.files[0];
-    console.log("file", this.file);
+    getFile(event: any) {
+    var blob = event.srcElement.files[0];
+    console.log(blob.type);
+    if(blob.type=="image/png" || blob.type=="image/jpeg" || blob.type=="image/jpg"){
+      this.file = event.srcElement.files[0];
+    }
+    else{
+       $('#errorModal').modal('show');
+      this.circular.controls.file.reset();
+    }
   }
-
 }
