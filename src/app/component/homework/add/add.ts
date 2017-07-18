@@ -1,44 +1,47 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HomeworkService } from '../../../providers/homework.service';
 import { Location } from '@angular/common';
 import { CommonService } from '../../../providers/common.service';
+import { Router } from '@angular/router'
 
-declare let $:any;
+declare let $: any;
 
 @Component({
   selector: 'homework-add',
   templateUrl: './add.html',
   // styleUrls:['../homework.component.css']
-  
+
 })
 
-export class HomeworkAddComponent implements OnInit{
+export class HomeworkAddComponent implements OnInit {
 
   public title: string = "New Homework";
   public homework: FormGroup;
-  public submitProgress:boolean = false;
-  standards:any = [];
-  subjects:any = [];
-  public emptySubjects:boolean = true;
+  public submitProgress: boolean = false;
+  standards: any = [];
+  subjects: any = [];
+  public emptySubjects: boolean = true;
+  public loader: boolean = false;
 
 
   constructor(private homeworkService: HomeworkService,
-              private commonService: CommonService,
-              private _location:Location) { }
+    private commonService: CommonService,
+    private _location: Location,
+    public router: Router) { }
 
 
   ngOnInit() {
     this.initForm();
     this.getStandards();
   }
-  file:any;
-  getFile(event:any){
+  file: any;
+  getFile(event: any) {
     this.file = event.srcElement.files[0];
   }
 
-  onDueDate(e:any){
-    if(new Date(e.target.value) < new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate())){
+  onDueDate(e: any) {
+    if (new Date(e.target.value) < new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate())) {
       alert("Please choose an upcoming date from the calendar.");
       this.homework.controls['dueDate'].patchValue(this.commonService.getTomorrow());
     }
@@ -54,52 +57,55 @@ export class HomeworkAddComponent implements OnInit{
     });
   }
 
-  getSubjects(a:any) {
-    // this.nl.showLoader();
-     this.subjects = [];
+  getSubjects(a: any) {
+    this.loader = true;
+    this.subjects = [];
     this.homeworkService.getSubjects(a).subscribe(res => {
-       if(res.status==204){
+      if (res.status == 204) {
         this.emptySubjects = true;
         this.subjects = [];
+        this.loader = false;
         return;
       }
       this.emptySubjects = false;
-      // this.nl.hideLoader();
       this.subjects = res;
+      this.loader = false;
     }, (err) => {
-      // this.nl.onError(err);
-      // this.viewCtrl.dismiss();
+      this.loader = false;
+      this.router.navigate(['/error']);
     });
   }
 
   public getStandards() {
+    this.loader = true;
     this.standards = this.commonService.getData("standards");
-    if (typeof(this.standards) === 'undefined') {
+    if (typeof (this.standards) === 'undefined') {
       this._getStandards();
     }
+    this.loader = false;
   }
 
   public _getStandards() {
-    // this.nl.showLoader();
+    this.loader = true;
     this.homeworkService.getStandards().subscribe((res) => {
-      // this.nl.hideLoader();
       this.standards = res;
       this.commonService.storeData("standards", res);
+      this.loader = false;
     }, (err) => {
-      // this.viewCtrl.dismiss();
-      // this.nl.onError(err);
+      this.loader = false;
+      this.router.navigate(['/error']);
     });
   }
 
-  submitHomework(){
+  submitHomework() {
     this.submitProgress = true;
     let formData = new FormData();
-    formData.append('description',this.homework.value['description']);
-    formData.append('standardId',this.homework.value['standardId']);
-    formData.append('subjectId',this.homework.value['subjectId']);
-    formData.append('dueDate',this.homework.value['dueDate']);
+    formData.append('description', this.homework.value['description']);
+    formData.append('standardId', this.homework.value['standardId']);
+    formData.append('subjectId', this.homework.value['subjectId']);
+    formData.append('dueDate', this.homework.value['dueDate']);
     formData.append('file', this.file);
-    this.saveHomework(formData); 
+    this.saveHomework(formData);
     this.submitProgress = false;
   }
 
@@ -123,19 +129,17 @@ export class HomeworkAddComponent implements OnInit{
   //   actionSheet.present();
   // }
 
-  public saveHomework(formData:any) {
+  public saveHomework(formData: any) {
     console.log(formData);
-    console.log("file",this.file);
-    // this.nl.showLoader();
+    console.log("file", this.file);
+    this.loader = true;
     this.homeworkService.PostHomework(formData).subscribe((data) => {
-      $('#homeworkModal').modal('show');
       this.initForm();
-      // this.nl.hideLoader();
-      // this.viewCtrl.dismiss(data);
-      // this.nl.showToast("Homework created successfully");
-    },(err) => {
-      // this.nl.onError(err);
-      // this.viewCtrl.dismiss();
+      this.loader = false;
+      $('#homeworkModal').modal('show');
+    }, (err) => {
+      this.loader = false;
+      this.router.navigate(['/error']);
     });
   }
 

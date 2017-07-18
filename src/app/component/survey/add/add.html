@@ -10,7 +10,7 @@
     <loader [condition]="loader"></loader>
   </div>
 
-  <div *ngIf="!surveyInfo">
+  <div *ngIf="((!surveyInfo)&&(!loader))">
     Surveys cannot be added at the moment. Try again later.
   </div>
 
@@ -79,7 +79,6 @@
           <div class="form-group col-sm-4 col-xs-6">
             <label for="surveyType" class="question">Question Type</label>
             <select class="form-control" id="surveyType" formControlName="type">
-
               <!--(ngModelChange)="onQuestionType($event,surveyForm.controls.surveyQuestions.controls[i])"-->
                 <option *ngFor="let a of surveyInfo.surveyQuestionType" [value]="a.id"> {{a.name}}</option>
             </select>
@@ -142,7 +141,7 @@
     </div>
 
     <div class="panel-footer">
-      <button type="submit" class="btn btn-success" [disabled]="(surveyForm.invalid)">Submit</button>
+      <button type="submit" class="btn btn-success" [disabled]="surveyForm.invalid">Submit</button>
       <button type="button" class="btn btn-primary" [disabled]="surveyForm.controls.surveyQuestions.length==surveyInfo.questionLimit"
         (click)="addQuestions(surveyForm)">Add Questions</button>
     </div>

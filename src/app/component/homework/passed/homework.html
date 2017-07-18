@@ -7,7 +7,7 @@
           <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </button>
       </div>
-      <div style="text-align: center" *ngIf="EmptyHomeworks" ><b>No Homework</b></div>
+      <div style="text-align: center" *ngIf="EmptyHomeworks" ><b>No Homeworks are added to the view.</b></div>
     <div style="margin-top: 2%;padding-top: 1%;">
       <div class="container card" *ngFor="let a of homeworks; let i = index;">
       <div class="row">
@@ -94,7 +94,7 @@
       <div class="row modal-date">
         <div class="col-sm-2 col-xs-2"><i class="glyphicon glyphicon-calendar pull-right"></i></div>
         <div class="col-sm-5 col-xs-5" ><label class="heading">Created At</label><div class="result">{{selectedHomework.createdAt | date: "shortDate"}}</div></div>
-        <div class="col-sm-5 col-xs-5" ><label class="heading">Due date</label><div class="result">{{selectedHomework.dueDate | date: "shortDate"}}</div></div>
+        <div class="col-sm-5 col-xs-5" ><label class="heading">Due date</label><div class="result">{{selectedHomework.dueDate | date}}</div></div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
