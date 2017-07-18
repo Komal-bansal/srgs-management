@@ -52,7 +52,8 @@ export const rootRouterConfig: Routes = [
       { path: 'complaint/status/:statusId', component: ComplaintComponent, canActivate: [LoggedInGuard] },
       { path: 'complaint/category-status/category/:categoryId', component: ComplaintComponent, canActivate: [LoggedInGuard] },
       { path: 'complaint/category-status/:categoryId/:statusId', component: ComplaintComponent, canActivate: [LoggedInGuard] },
-      { path: 'circular', component: CircularComponent, canActivate: [LoggedInGuard] },
+      { path: 'circular', component: CircularComponent, canActivate: [LoggedInGuard],
+  },
       { path: 'add-circular', component: AddCircular, canActivate: [LoggedInGuard] },
       {
         path: 'homework', component: HomeworkComponent, canActivate: [LoggedInGuard],
@@ -103,10 +104,11 @@ export const rootRouterConfig: Routes = [
       { path: 'student-profile', component: StudentRatingComponent, canActivate: [LoggedInGuard] },
       { path: 'view-survey/:id', component: ViewSurveyComponent, canActivate: [LoggedInGuard] },
       {
-        path: 'suggestion', component: SuggestionComponent,
+        path: 'suggestion', component: SuggestionComponent, pathMatch:'prefix',
         children: [
           { path: 'for-me', component: SuggestionForMe, canActivate: [LoggedInGuard] },
-          { path: 'for-student', component: SuggestionForStudent, canActivate: [LoggedInGuard] }
+          { path: 'for-student', component: SuggestionForStudent, canActivate: [LoggedInGuard] },
+          { path: 'status/:statusId', component: SuggestionForMe, canActivate: [LoggedInGuard] }
         ]
       },
       { path: 'suggestion-add', component: SuggestionAddComponent, canActivate: [LoggedInGuard] },

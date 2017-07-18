@@ -11,6 +11,7 @@ export class SuggestionComponent{
     this.route.params.subscribe(param => {
       // console.log("asddf df",this.suggestionStatus);
     });
-    this.router.navigate(["/suggestion/for-me"]);
+    
+    // this.router.navigate(["/suggestion/for-me"]);
   }
 }

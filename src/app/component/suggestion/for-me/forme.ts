@@ -15,6 +15,7 @@ export class SuggestionForMe extends ComplaintComponent{
     public route: ActivatedRoute) {
     super(cs,router,route);
     if(this.url == "/suggestion/for-me") this.url = "/suggestion";
+    if(this.complaintStatus) this.url = "/suggestion/status/" + this.complaintStatus;
   }  
 
 }

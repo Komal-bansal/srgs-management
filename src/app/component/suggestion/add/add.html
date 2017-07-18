@@ -1,9 +1,9 @@
 <div class="panel panel-default">
   <!-- Default panel contents -->
   <div class="panel-heading">Create New Suggestion
-        <button type="button" class="close pull-right" aria-label="Close">
-      <span aria-hidden="true">&times; </span>
-    </button>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="_location.back();">
+    <span aria-hidden="true">&times; </span>
+  </button>
   </div>
     <div class="panel-body">
       <form name="suggestion" [formGroup]="suggestion" (ngSubmit)="submitSuggestion()" novalidate>

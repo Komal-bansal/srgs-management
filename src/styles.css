@@ -203,7 +203,7 @@ a{
 
 }
 
-@media screen and (max-width: 900px) {
+/* @media screen and (max-width: 900px) {
     .card{
         width: 29%;
         padding: 20px;
@@ -213,7 +213,7 @@ a{
         width: 100%;
         margin: 0px; 
     }
-}
+} */
 
 @media screen and (max-width: 479px) {
      .card{
@@ -284,8 +284,8 @@ hr.style-line {
 }
 .add-button{
     /*float: right;*/
-    width: 8%;
-    float: right;
+    position: absolute;
+    right: 5%;
     /* margin-right: 10px; */
 }
 /*search */
