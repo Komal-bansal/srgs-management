@@ -42,6 +42,7 @@ import {SuggestionForMe} from './component/suggestion/for-me/forme';
 import {SuggestionForStudent} from './component/suggestion/for-student/forstudent';
 import {SuggestionAddComponent} from './component/suggestion/add/add';
 import {ErrorComponent} from './component/error/error.component';
+import {Error404Component} from './component/error/error404';
 
 /*Providers */
 import { LoggedInGuard } from './component/login/login.gaurd';
@@ -115,6 +116,7 @@ import {SuggestionService} from './providers/suggestion.service';
     SuggestionForStudent,
     SuggestionAddComponent,
     ErrorComponent,
+    Error404Component,
   ],
   providers: [
     LoggedInGuard,

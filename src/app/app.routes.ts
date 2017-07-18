@@ -37,10 +37,12 @@ import { SuggestionForMe } from './component/suggestion/for-me/forme';
 import { SuggestionForStudent } from './component/suggestion/for-student/forstudent';
 import { SuggestionAddComponent } from './component/suggestion/add/add';
 import { ErrorComponent } from './component/error/error.component';
+import {Error404Component} from './component/error/error404';
 
 export const rootRouterConfig: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent, canActivate: [LoggedInGuard] },
+  { path: 'login', component: LoginComponent },
+  // , canActivate: [LoggedInGuard]
   {
     path: '', component: MainComponent, canActivate: [LoggedInGuard],
     children: [
@@ -113,5 +115,6 @@ export const rootRouterConfig: Routes = [
 
   },
   { path: 'error', component: ErrorComponent, canActivate: [LoggedInGuard]  },
-  { path: '**', redirectTo: '/error' },
+   { path: 'error404', component: Error404Component, canActivate: [LoggedInGuard]  },
+  { path: '**', redirectTo: '/error404' },
 ];

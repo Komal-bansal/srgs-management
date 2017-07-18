@@ -273,8 +273,9 @@ export class ComplaintComponent implements OnInit, AfterViewInit {
   currentUser = this.cs.getUserId();
 
   getComplaintCommentById(complaint: any) {
-    if (complaint == undefined) {
-      this.cs.getComplaintCommentById(this.url, this.selectedComplaint.id).subscribe((res) => {
+    if (complaint == undefined)
+      complaint = this.selectedComplaint;
+    this.cs.getComplaintCommentById(this.url, complaint.id).subscribe((res) => {
         if (res.status === 204) {
           this.EmptyComments = true;
           this.comments = [];
@@ -283,38 +284,12 @@ export class ComplaintComponent implements OnInit, AfterViewInit {
         }
         this.EmptyComments = false;
         this.comments = res;
+        console.log("comments", res);
         this.count = this.comments.length;
       }, (err) => {
         delete this.comments;
         this.router.navigate(['/error']);
-      });
-      if (this.selectedComplaint.closedOn || this.selectedComplaint.statusId == 6) this.closedOn = true;
-      this.complaintIdOfCommentModel = this.selectedComplaint.id;
-
-      this.complaints.forEach((element: any) => {
-        if (element['id'] == this.selectedComplaint.id)
-          this.complaintTitleOfCommentModel = element.title;
-      });
-
-
-    }
-    else {
-
-      this.cs.getComplaintCommentById(this.url, complaint.id).subscribe((res) => {
-        if (res.status === 204) {
-          this.EmptyComments = true;
-          this.comments = [];
-          this.count = 0;
-          return;
-        }
-        this.EmptyComments = false;
-        this.comments = res;
-        console.log("comments",res);
-        this.count = this.comments.length;
-      }, (err) => {
-        delete this.comments;
-        this.router.navigate(['/error']);
-      });
+      });  
       if (complaint.closedOn || complaint.statusId == 6)
       { this.closedOn = true; }
       else { this.closedOn = false; }
@@ -325,7 +300,6 @@ export class ComplaintComponent implements OnInit, AfterViewInit {
           this.complaintTitleOfCommentModel = element.title;
       });
 
-    }
   }
 
   public submitComment() {

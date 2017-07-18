@@ -19,7 +19,7 @@
           <div class="col-sm-6 col-xs-6" *ngIf="!complaintStatus" style="margin: -8px -24px;">
             <span [style.background]="c.statusColor" class="badge">@{{c.statusName}}</span>
           </div>
-          <span class="glyphicon glyphicon-resize-full expand" (click)="seletToExpand(c,i)" data-toggle="modal" data-target="#myModal-card"></span>
+          <span class="glyphicon glyphicon-resize-full expand" onclick="$('.panel.panel-chat').hide();" (click)="seletToExpand(c,i)" data-toggle="modal" data-target="#myModal-card"></span>
         </div>
         <!-- <div class="row">
         <div class="col-sm-6" *ngIf="!complaintStatus">
@@ -114,7 +114,7 @@
             <div class="row">
               <div class="col-sm-2 col-xs-2"><i class="glyphicon glyphicon-calendar"></i></div>
               <div class="col-sm-5 col-xs-5"><label class="heading">Created At</label>
-                <div class="result">{{selectedComplaint.createdAt | date: "shortDate"}}</div>
+                <div class="result">{{selectedComplaint.createdAt | date}}</div>
               </div>
               <div class="col-sm-5 col-xs-5"><label class="heading">Closed On</label>
                 <div class="result" *ngIf="selectedComplaint.closedOn">{{selectedComplaint.closedOn | date}}</div>
@@ -256,7 +256,7 @@
     <div *ngFor="let c of comments">
       <div *ngIf="c.employeeId == currentUser">
         <div class="myMsg">
-          <img [attr.src]="fileUrl + c.studentPicUrl" class="myImg" />
+          <img [attr.src]="fileUrl + c.employeePicUrl" class="myImg" />
           <div class="myText">
             <span class="myText-style">
               {{c.comment}}
@@ -269,7 +269,7 @@
       </div>
       <div *ngIf="c.employeeId != currentUser">
         <div class="msg">
-          <img [attr.src]="fileUrl + c.studentPicUrl" class="img" />
+          <img [attr.src]="fileUrl + c.parentPicUrl" class="img" />
           <div class="text">
             <span class="text-style">
               {{c.comment}}

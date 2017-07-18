@@ -44,7 +44,7 @@ export class LoginComponent{
     this.appService.getUserInfo().subscribe((res) => {
       this.loggedInSuccesfully(res);
     }, (err) => {
-
+       this.router.navigate(['/error']);
     });
   }
 
